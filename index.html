@@ -34,7 +34,7 @@
 
         .award-type {
             width: 20px;
-            height: 15px;
+            height: 20px;
             object-fit: cover;
             position: absolute; /* Overlay the award icon */
             bottom: 3px; /* Positioning from the bottom of the container */
@@ -100,7 +100,7 @@
         function createTable() {
             let seed = document.getElementById('seedInput').value;
             if (seed === '') {
-                seed = Math.floor(Math.random() * 10000); // Generate a random seed if none is provided
+                seed = Math.floor(Math.random() * 1000000000); // Generate a random seed if none is provided
                 document.getElementById('seedInput').value = seed; // Display the random seed
             }
             seed = parseInt(seed);
