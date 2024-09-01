@@ -17,8 +17,8 @@
         }
 
         img {
-            width: 100px;
-            height: 100px;
+            width: 75px;
+            height: 75px;
             object-fit: cover;
         }
     </style>
@@ -43,10 +43,9 @@
     <script>
         // Array of image URLs from your GitHub repository
         const imageUrls = [
-            'https://raw.githubusercontent.com/username/repository-name/main/images/image1.jpg',
-            'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg',
-            'https://raw.githubusercontent.com/username/repository-name/main/images/image3.jpg',
-            // Add more image URLs as needed
+            'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon.png?raw=true',
+            'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg'
+            // Add more icons
         ];
 
         // Simple PRNG (Pseudo-Random Number Generator) based on a seed
@@ -55,7 +54,7 @@
             return x - Math.floor(x);
         }
 
-        function getRandomImageUrl(seed, index) {
+        function getRandomIcon(seed, index) {
             const randomIndex = Math.floor(seededRandom(seed + index) * imageUrls.length);
             return imageUrls[randomIndex];
         }
@@ -81,7 +80,7 @@
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
                     const img = document.createElement('img');
-                    img.src = getRandomImageUrl(seed, index);
+                    img.src = getRandomIcon(seed, index);
                     cell.appendChild(img);
                     row.appendChild(cell);
                     index++;
