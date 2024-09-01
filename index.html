@@ -1,31 +1,101 @@
-<html>
-<style>
-table, th, td {
-  border:1px solid black;
-}
-</style>
-<body>
-  <h1>Viva Pinata Bingo!</h1>
-<table>
-  <tr>
-    <th>
-      <img src=
-"https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon.png?raw=true">
-    </th>
-    <th>B1</th>
-    <th>C1</th>
-  </tr>
-  <tr>
-    <td>A2</td>
-    <td>B2</td>
-    <td>C3</td>
-  </tr>
-  <tr>
-    <td>A3</td>
-    <td>B3</td>
-    <td>C3</td>
-  </tr>
-</table>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with Seed-Based Random Images</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="tableSize">Choose table size:</label>
+    <select id="tableSize" onchange="createTable()">
+        <option value="3">3x3</option>
+        <option value="4">4x4</option>
+        <option value="5">5x5</option>
+        <option value="6">6x6</option>
+        <option value="7">7x7</option>
+    </select>
+
+    <label for="seedInput">Enter seed (optional):</label>
+    <input type="text" id="seedInput" placeholder="Leave empty for random seed">
+    <button onclick="createTable()">Generate Table</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        // Array of image URLs from your GitHub repository
+        const imageUrls = [
+            'https://raw.githubusercontent.com/username/repository-name/main/images/image1.jpg',
+            'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg',
+            'https://raw.githubusercontent.com/username/repository-name/main/images/image3.jpg',
+            // Add more image URLs as needed
+        ];
+
+        // Simple PRNG (Pseudo-Random Number Generator) based on a seed
+        function seededRandom(seed) {
+            var x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        function getRandomImageUrl(seed, index) {
+            const randomIndex = Math.floor(seededRandom(seed + index) * imageUrls.length);
+            return imageUrls[randomIndex];
+        }
+
+        function createTable() {
+            let seed = document.getElementById('seedInput').value;
+            if (seed === '') {
+                seed = Math.floor(Math.random() * 10000); // Generate a random seed if none is provided
+                document.getElementById('seedInput').value = seed; // Display the random seed
+            }
+            seed = parseInt(seed);
+
+            const size = parseInt(document.getElementById('tableSize').value);
+            const tableContainer = document.getElementById('tableContainer');
+            tableContainer.innerHTML = ''; // Clear the previous table
+
+            const table = document.createElement('table');
+
+            let index = 0; // To vary the seed for each cell
+            for (let i = 0; i < size; i++) {
+                const row = document.createElement('tr');
+
+                for (let j = 0; j < size; j++) {
+                    const cell = document.createElement('td');
+                    const img = document.createElement('img');
+                    img.src = getRandomImageUrl(seed, index);
+                    cell.appendChild(img);
+                    row.appendChild(cell);
+                    index++;
+                }
+
+                table.appendChild(row);
+            }
+
+            tableContainer.appendChild(table);
+        }
+
+        // Create initial table with a random seed
+        createTable();
+    </script>
+
+</body>
 </html>
