@@ -16,6 +16,16 @@
             text-align: center;
         }
 
+
+        td {
+            position: relative; /* Ensures the pinataIcon and awardIcon are positioned correctly within the cell */
+        }
+
+        .icon-container {
+            position: relative; /* Position context for award-type */
+            display: inline-block; /* Makes the container fit the size of the pinataIcon */
+        }
+
         .pinata-icon {
             width: 75px;
             height: 75px;
