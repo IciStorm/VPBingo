@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Table with Seed-Based Random Images</title>
+    <title>Viva Piñata Bingo</title>
     <style>
         table {
             border-collapse: collapse;
@@ -16,10 +16,25 @@
             text-align: center;
         }
 
-        img {
+        .pinata-icon {
             width: 75px;
             height: 75px;
             object-fit: cover;
+        }
+
+        .award-type {
+            width: 25px;
+            height: 25px;
+            object-fit: cover;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #tableContainer {
+            position: relative;
         }
     </style>
 </head>
@@ -33,6 +48,8 @@
         <option value="6">6x6</option>
         <option value="7">7x7</option>
     </select>
+    <label for="enableTipSet">Include Trouble in Paradise Piñatas:</label>
+    <input type="checkbox" id="enableTipSet" onchange="createTable()">
 
     <label for="seedInput">Enter seed (optional):</label>
     <input type="text" id="seedInput" placeholder="Leave empty for random seed">
@@ -42,9 +59,21 @@
 
     <script>
         // Array of image URLs from your GitHub repository
-        const imageUrls = [
+        const pinataIcons = [
             'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon.png?raw=true',
             'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg'
+            // Add more icons
+        ];
+
+        const tipIcons = [
+            'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon%20TIP.png?raw=true',
+            'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg'
+            // Add more icons
+        ];
+
+        const awardTypeIcons = [
+            'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon.png?raw=true',
+            'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon%20TIP.png?raw=true'
             // Add more icons
         ];
 
@@ -54,9 +83,9 @@
             return x - Math.floor(x);
         }
 
-        function getRandomIcon(seed, index) {
-            const randomIndex = Math.floor(seededRandom(seed + index) * imageUrls.length);
-            return imageUrls[randomIndex];
+        function getRandomIcon(iconArray, seed, index) {
+            const randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
+            return iconArray[randomIndex];
         }
 
         function createTable() {
@@ -68,6 +97,7 @@
             seed = parseInt(seed);
 
             const size = parseInt(document.getElementById('tableSize').value);
+            const enableTipSet = document.getElementById('enableTipSet').checked;
             const tableContainer = document.getElementById('tableContainer');
             tableContainer.innerHTML = ''; // Clear the previous table
 
@@ -79,9 +109,20 @@
 
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
-                    const img = document.createElement('img');
-                    img.src = getRandomIcon(seed, index);
-                    cell.appendChild(img);
+                    const iconPool = enableTipSet ? tipIcons : pinataIcons;
+
+                    // For the main pinata image
+                    const mainIcon = document.createElement('img');
+                    mainIcon.src = getRandomIcon(iconPool, seed, index);
+                    mainIcon.classList.add('pinata-icon');
+                    cell.appendChild(mainIcon);
+
+                    // For the award image overlay
+                    const awardIcon = document.createElement('img');
+                    awardIcon.src = getRandomImageUrl(awardTypeIcons, seed + 1000, index);
+                    awardIcon.classList.add('award-type');
+                    cell.appendChild(overlayImg);
+
                     row.appendChild(cell);
                     index++;
                 }
