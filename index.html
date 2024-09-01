@@ -166,51 +166,52 @@
             tableContainer.appendChild(table);
         }
 
-function handleCellClick(event, cell) {
-    const isLeftClick = event.button === 0;
-    const isRightClick = event.button === 2;
-
-    // Convert NodeList to Array
-    const existingImages = Array.from(cell.querySelectorAll('.status-image'));
-    const leftClickImageA = existingImages.find(img => img.classList.contains('left-clickA'));
-    const leftClickImageB = existingImages.find(img => img.classList.contains('left-clickB'));
-    const rightClickImage = existingImages.find(img => img.classList.contains('right-click'));
-
-    // Remove images based on click type
-    if (isLeftClick) {
-        if (leftClickImageB) {
-            cell.removeChild(leftClickImageB);
-        } else if (leftClickImageA) {
-            cell.removeChild(leftClickImageA);
-        } else if (rightClickImage) {
-            cell.removeChild(rightClickImage);
-        }
+        function handleCellClick(event, cell) {
+            const isLeftClick = event.button === 0;
+            const isRightClick = event.button === 2;
         
-        // Add or toggle left-click image
-        if (leftClickImageA) {
-            const newImage = document.createElement('img');
-            newImage.src = leftClickImageBUrl;
-            newImage.className = 'status-image left-clickB';
-            cell.appendChild(newImage);
-        } else {
-            const newImage = document.createElement('img');
-            newImage.src = leftClickImageAUrl;
-            newImage.className = 'status-image left-clickA';
-            cell.appendChild(newImage);
-        }
-    } else if (isRightClick) {
-        if (rightClickImage) {
-            cell.removeChild(rightClickImage);
-        }
+            // Convert NodeList to Array
+            const existingImages = Array.from(cell.querySelectorAll('.status-image'));
+            const leftClickImageA = existingImages.find(img => img.classList.contains('left-clickA'));
+            const leftClickImageB = existingImages.find(img => img.classList.contains('left-clickB'));
+            const rightClickImage = existingImages.find(img => img.classList.contains('right-click'));
         
-        // Add right-click image
-        const newImage = document.createElement('img');
-        newImage.src = rightClickImageUrl;
-        newImage.className = 'status-image right-click';
-        cell.appendChild(newImage);
-    }
-
-    event.preventDe
+            // Remove images based on click type
+            if (isLeftClick) {
+                if (leftClickImageB) {
+                    cell.removeChild(leftClickImageB);
+                } else if (leftClickImageA) {
+                    cell.removeChild(leftClickImageA);
+                } else if (rightClickImage) {
+                    cell.removeChild(rightClickImage);
+                }
+                
+                // Add or toggle left-click image
+                if (leftClickImageA) {
+                    const newImage = document.createElement('img');
+                    newImage.src = leftClickImageBUrl;
+                    newImage.className = 'status-image left-clickB';
+                    cell.appendChild(newImage);
+                } else {
+                    const newImage = document.createElement('img');
+                    newImage.src = leftClickImageAUrl;
+                    newImage.className = 'status-image left-clickA';
+                    cell.appendChild(newImage);
+                }
+            } else if (isRightClick) {
+                if (rightClickImage) {
+                    cell.removeChild(rightClickImage);
+                }
+                
+                // Add right-click image
+                const newImage = document.createElement('img');
+                newImage.src = rightClickImageUrl;
+                newImage.className = 'status-image right-click';
+                cell.appendChild(newImage);
+            }
+        
+            event.preventDefault();
+        }
 
         // Create initial table with a random seed
         createTable();
