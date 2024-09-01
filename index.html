@@ -166,51 +166,63 @@
             tableContainer.appendChild(table);
         }
 
-function handleCellClick(event, cell) {
-    const isLeftClick = event.button === 0;
-    const isRightClick = event.button === 2;
+        function handleCellClick(event, cell) {
+            const isLeftClick = event.button === 0;
+            const isRightClick = event.button === 2;
+            const existingImages = cell.querySelectorAll('.status-image');
+            let leftClickImageA = existingImages.find(img => img.classList.contains('left-clickA'));
+            let leftClickImageB = existingImages.find(img => img.classList.contains('left-clickB'));
+            let rightClickImage = existingImages.find(img => img.classList.contains('right-click'));
 
-    // Convert NodeList to Array
-    const existingImages = Array.from(cell.querySelectorAll('.status-image'));
-    const leftClickImageA = existingImages.find(img => img.classList.contains('left-clickA'));
-    const leftClickImageB = existingImages.find(img => img.classList.contains('left-clickB'));
-    const rightClickImage = existingImages.find(img => img.classList.contains('right-click'));
+            // Remove images on both clicks if present
+            if (isLeftClick && leftClickImageB) {
+                cell.removeChild(leftClickImageB);
+            } else if (isRightClick && leftClickImageA) {
+                cell.removeChild(leftClickImageA);
+            } else if (isRightClick && leftClickImageB) {
+                cell.removeChild(leftClickImageB);
+            } else if (isLeftClick && rightClickImage) {
+                cell.removeChild(leftClickImageA);
+            } else if (isRightClick && rightClickImage) {
+                cell.removeChild(rightClickImage);
+            } else {
+                // Add left-click image
+                if (isLeftClick) {
+                    if (leftClickImage) {
+                        // Toggle to second image if already present
+                        const newImage = document.createElement('img');
+                        newImage.src = leftClickImageBUrl;
+                        newImage.className = 'status-image left-click';
+                        cell.appendChild(newImage);
+                    } else {
+                        const newImage = document.createElement('img');
+                        newImage.src = leftClickImageAUrl;
+                        newImage.className = 'status-image left-click';
+                        cell.appendChild(newImage);
+                    }
+                }
 
-    // Remove images based on click type
-    if (isLeftClick) {
-        if (leftClickImageB) {
-            cell.removeChild(leftClickImageB);
-        } else if (leftClickImageA) {
-            cell.removeChild(leftClickImageA);
-        } else if (rightClickImage) {
-            cell.removeChild(rightClickImage);
+                // Add right-click image
+                if (isRightClick) {
+                    if (rightClickImage) {
+                        const newImage = document.createElement('img');
+                        newImage.src = rightClickImageUrl;
+                        newImage.className = 'status-image right-click';
+                        cell.appendChild(newImage);
+                    } else {
+                        const newImage = document.createElement('img');
+                        newImage.src = rightClickImageUrl;
+                        newImage.className = 'status-image right-click';
+                        cell.appendChild(newImage);
+                    }
+                }
+            }
+            event.preventDefault(); // Prevent default right-click menu
         }
-        
-        // Add or toggle left-click image
-        if (leftClickImageA) {
-            const newImage = document.createElement('img');
-            newImage.src = leftClickImageBUrl;
-            newImage.className = 'status-image left-clickB';
-            cell.appendChild(newImage);
-        } else {
-            const newImage = document.createElement('img');
-            newImage.src = leftClickImageAUrl;
-            newImage.className = 'status-image left-clickA';
-            cell.appendChild(newImage);
-        }
-    } else if (isRightClick) {
-        if (rightClickImage) {
-            cell.removeChild(rightClickImage);
-        }
-        
-        // Add right-click image
-        const newImage = document.createElement('img');
-        newImage.src = rightClickImageUrl;
-        newImage.className = 'status-image right-click';
-        cell.appendChild(newImage);
-    }
 
-    event.preventDe
+        // Create initial table with a random seed
+        createTable();
+    </script>
 
         // Create initial table with a random seed
         createTable();
