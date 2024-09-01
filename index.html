@@ -16,7 +16,6 @@
             text-align: center;
         }
 
-
         td {
             position: relative; /* Ensures the pinataIcon and awardIcon are positioned correctly within the cell */
         }
@@ -30,14 +29,16 @@
             width: 75px;
             height: 75px;
             object-fit: cover;
+            display: block; /* Ensures the icon is displayed as a block-level element */
         }
 
         .award-type {
             width: 15px;
             height: 15px;
             object-fit: cover;
-            bottom: 5px;
-            right: 5px;
+            position: absolute; /* Overlay the award icon */
+            bottom: 5px; /* Positioning from the bottom of the container */
+            right: 5px; /* Positioning from the right of the container */
             border: 2px solid white;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
@@ -121,17 +122,21 @@
                     const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
 
                     // For the main pinata image
+                    const iconContainer = document.createElement('div');
+                    iconContainer.classList.add('icon-container');
+
                     const mainIcon = document.createElement('img');
                     mainIcon.src = getRandomIcon(iconPool, seed, index);
                     mainIcon.classList.add('pinata-icon');
-                    cell.appendChild(mainIcon);
+                    iconContainer.appendChild(mainIcon);
 
                     // For the award image overlay
                     const awardIcon = document.createElement('img');
                     awardIcon.src = getRandomIcon(awardTypeIcons, seed + 1000, index);
                     awardIcon.classList.add('award-type');
-                    cell.appendChild(awardIcon);
+                    iconContainer.appendChild(awardIcon);
 
+                    cell.appendChild(iconContainer);
                     row.appendChild(cell);
                     index++;
                 }
