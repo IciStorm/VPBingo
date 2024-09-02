@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Piñata Bingo</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #settingsContainer {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        label, input, select, button {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
         table {
             border-collapse: collapse;
             margin-top: 20px;
@@ -19,7 +39,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
         }
-        
+
         img {
             display: block;
             border: none;
@@ -75,22 +95,26 @@
 </head>
 <body>
 
-    <label for="tableSize">Choose table size:</label>
-    <select id="tableSize" onchange="createTable()">
-        <option value="3">3x3</option>
-        <option value="4">4x4</option>
-        <option value="5" selected>5x5</option>
-        <option value="6">6x6</option>
-        <option value="7">7x7</option>
-    </select>
-    <label for="enableTipSet">Include Trouble in Paradise Piñatas:</label>
-    <input type="checkbox" id="enableTipSet" onchange="createTable()">
-
-    <label for="seedInput">Enter seed (optional):</label>
-    <input type="text" id="seedInput" placeholder="Leave empty for random seed">
-    <button onclick="createTable()">Generate Table</button>
-
     <div id="tableContainer"></div>
+
+    <div id="settingsContainer">
+        <label for="tableSize">Choose table size:</label>
+        <select id="tableSize" onchange="createTable()">
+            <option value="3">3x3</option>
+            <option value="4">4x4</option>
+            <option value="5" selected>5x5</option>
+            <option value="6">6x6</option>
+            <option value="7">7x7</option>
+        </select>
+
+        <label for="enableTipSet">Include Trouble in Paradise Piñatas:</label>
+        <input type="checkbox" id="enableTipSet" onchange="createTable()">
+
+        <label for="seedInput">Enter seed (optional):</label>
+        <input type="text" id="seedInput" placeholder="Leave empty for random seed">
+
+        <button onclick="createTable()">Generate Table</button>
+    </div>
 
     <script src="validCombos.js"></script>
     <script src="pinataIcons.js"></script>
