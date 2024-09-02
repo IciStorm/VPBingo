@@ -171,8 +171,8 @@
             return iconArray[randomIndex];
         }
 
-        function getValidCombo(iconArray, seed, index, pinataIcon) {
-            const validIcons = validCombos[pinataIcon] || iconArray;
+        function getValidCombo(pinataIcon, seed, index) { // Highlighted change: Function signature updated
+            const validIcons = validCombos[pinataIcon] || awardTypeIcons; // Highlighted change: iconArray replaced with awardTypeIcons
             const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
             return validIcons[randomIndex];
         }
@@ -205,13 +205,14 @@
                     iconContainer.classList.add('icon-container');
 
                     const mainIcon = document.createElement('img');
-                    mainIcon.src = getRandomIcon(iconPool, seed, index);
+                    const pinataIcon = getRandomIcon(iconPool, seed, index); // Highlighted change: Store the pinataIcon
+                    mainIcon.src = pinataIcon; // Highlighted change: Use pinataIcon here
                     mainIcon.classList.add('pinata-icon');
                     iconContainer.appendChild(mainIcon);
 
                     // For the award image overlay
                     const awardIcon = document.createElement('img');
-                    awardIcon.src = getRandomIcon(awardTypeIcons, seed + 1000, index);
+                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index); // Highlighted change: Use getValidCombo instead of getRandomIcon
                     awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
 
