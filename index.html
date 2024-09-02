@@ -170,13 +170,13 @@
             function getUniqueCombo() {
                 let pinataIcon, awardIcon, comboKey;
                 do { // Keep searching for something not already used
-                    pinataIcon = getRandomIcon(iconPool, seed, index);
+                    animalIcon = getRandomIcon(iconPool, seed, index);
                     awardIcon = getValidCombo(pinataIcon, seed + 1000, index);
                     uniqueSetKey = `${pinataIcon}-${awardIcon}`;
                 } while (usedCombinations.has(uniqueSetKey)); // Ensure unique combo
 
                 usedCombinations.add(uniqueSetKey); // Mark combination as used
-                return { pinataIcon, awardIcon };
+                return { animalIcon, awardIcon };
             }
 
             let index = 0; // To vary the seed for each cell
