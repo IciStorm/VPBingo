@@ -172,7 +172,7 @@
                 do { // Keep searching for something not already used
                     animalIcon = getRandomIcon(iconPool, seed, index);
                     awardIcon = getValidCombo(pinataIcon, seed + 1000, index);
-                    uniqueSetKey = `${pinataIcon}-${awardIcon}`;
+                    uniqueSetKey = `${animalIcon}-${awardIcon}`;
                 } while (usedCombinations.has(uniqueSetKey)); // Ensure unique combo
 
                 usedCombinations.add(uniqueSetKey); // Mark combination as used
@@ -188,7 +188,7 @@
                     const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
 
                     // Get unique combination
-                    const { pinataIcon, awardIcon } = getUniqueCombo();
+                    const { animalIcon, awardIcon } = getUniqueCombo();
 
                     // For the main pinata image
                     const iconContainer = document.createElement('div');
@@ -196,7 +196,7 @@
 
                     const mainIcon = document.createElement('img');
                     const pinataIcon = getRandomIcon(iconPool, seed, index);
-                    mainIcon.src = pinataIcon; // Highlighted change: Use pinataIcon here
+                    mainIcon.src = pinataIcon;
                     mainIcon.classList.add('pinata-icon');
                     iconContainer.appendChild(mainIcon);
 
