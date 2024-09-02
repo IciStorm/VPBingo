@@ -1,6 +1,9 @@
 const standardSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon2.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon3.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true'
 ];
@@ -11,6 +14,9 @@ const sourSet = [
 
 const petSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Variant1Ribbon.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Variant2Ribbon.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Variant3Ribbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true'
 ];
