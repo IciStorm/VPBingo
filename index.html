@@ -134,11 +134,17 @@
         function getRandomIcon(iconArray, seed, index) {
             let randomIndex;
             let pinataIcon;
+            let attempts = 0;
             
             // Keep generating until you find a unique icon (if necessary)
             do {
                 randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
                 pinataIcon = iconArray[randomIndex];
+                attempts++;
+
+                if (attempts > iconArray.length) {
+                    break;
+                }
             } while (Array.from(usedCombinations).some(combo => combo.startsWith(pinataIcon)));
         
             return pinataIcon;
@@ -149,10 +155,16 @@
 
             let combo;
             let randomIndex;
+            let attempts = 0;
 
             do {
                 randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
                 combo = pinataIcon + '-' + validIcons[randomIndex]; // Create a unique string for the combination
+                attemtps++;
+
+                if (attempts > validIcons.length) {
+                    break;
+                }
             } while (usedCombinations.has(combo));
 
             usedCombinations.add(combo);
