@@ -195,14 +195,14 @@
                     iconContainer.classList.add('icon-container');
 
                     const mainIcon = document.createElement('img');
-                    const pinataIcon = getRandomIcon(iconPool, seed, index);
-                    mainIcon.src = pinataIcon;
+                    const animalIcon = getRandomIcon(iconPool, seed, index);
+                    mainIcon.src = animalIcon;
                     mainIcon.classList.add('pinata-icon');
                     iconContainer.appendChild(mainIcon);
 
                     // For the award image overlay
                     const awardIcon = document.createElement('img');
-                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index);
+                    awardIcon.src = getValidCombo(animalIcon, seed + 1000, index);
                     awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
 
