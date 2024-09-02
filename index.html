@@ -29,7 +29,7 @@
 
         table {
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         table, th, td, img {
@@ -99,8 +99,11 @@
 
     <div id="tableContainer"></div>
 
+    <label for="seedInput">Enter Custom Seed:</label>
+    <input type="text" id="seedInput" placeholder="Leave empty for random seed">
+    
     <div id="settingsContainer">
-        <label for="tableSize">Choose table size:</label>
+        <label for="tableSize">Table Size:</label>
         <select id="tableSize" onchange="createTable()">
             <option value="3">3x3</option>
             <option value="4">4x4</option>
@@ -109,11 +112,13 @@
             <option value="7">7x7</option>
         </select>
 
+        <hr>
+
+    <span class="checkbox-container">
         <label for="enableTipSet">Include Trouble in Paradise Piñatas:</label>
         <input type="checkbox" id="enableTipSet" onchange="createTable()">
+    </span>
 
-        <label for="seedInput">Enter seed (optional):</label>
-        <input type="text" id="seedInput" placeholder="Leave empty for random seed">
 
         <button onclick="createTable()">Generate Table</button>
     </div>
