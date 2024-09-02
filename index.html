@@ -126,11 +126,6 @@
             return x - Math.floor(x);
         }
 
-        /*function getRandomIcon(iconArray, seed, index) {
-            const randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
-            return iconArray[randomIndex];
-        }*/
-
         function getRandomIcon(iconArray, seed, index) {
             let attempts = 0;
             let pinataIcon;
@@ -196,8 +191,8 @@
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
             if (seed === '') {
-                seed = Math.floor(Math.random() * 1000000000); // Generate a random seed if none is provided
-                document.getElementById('seedInput').value = seed; // Display the random seed
+                seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
+                document.getElementById('seedInput').value = seed; // Display the current seed
             }
             seed = parseInt(seed);
 
