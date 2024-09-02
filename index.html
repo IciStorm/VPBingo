@@ -165,6 +165,19 @@
             tableContainer.innerHTML = ''; // Clear the previous table
 
             const table = document.createElement('table');
+            const usedCombinations = new set(); // Keep track of what's already been used in the bingo board
+
+            function getUniqueCombo() {
+                let pinataIcon, awardIcon, comboKey;
+                do { // Keep searching for something not already used
+                    pinataIcon = getRandomIcon(iconPool, seed, index);
+                    awardIcon = getValidCombo(pinataIcon, seed + 1000, index);
+                    uniqueSetKey = `${pinataIcon}-${awardIcon}`;
+                } while (usedCombinations.has(uniqueSetKey)); // Ensure unique combo
+
+                usedCombinations.add(uniqueSetKey); // Mark combination as used
+                return { pinataIcon, awardIcon };
+            }
 
             let index = 0; // To vary the seed for each cell
             for (let i = 0; i < size; i++) {
@@ -173,6 +186,9 @@
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
                     const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
+
+                    // Get unique combination
+                    const { pinataIcon, awardIcon } = getUniqueCombo();
 
                     // For the main pinata image
                     const iconContainer = document.createElement('div');
