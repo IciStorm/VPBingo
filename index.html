@@ -168,7 +168,7 @@
             const usedCombinations = new set(); // Keep track of what's already been used in the bingo board
 
             function getUniqueCombo() {
-                let pinataIcon, awardIcon, comboKey;
+                let animalIcon, awardIcon, uniqueSetKey;
                 do { // Keep searching for something not already used
                     animalIcon = getRandomIcon(iconPool, seed, index);
                     awardIcon = getValidCombo(pinataIcon, seed + 1000, index);
