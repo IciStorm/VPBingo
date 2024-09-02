@@ -165,7 +165,7 @@
             tableContainer.innerHTML = ''; // Clear the previous table
 
             const table = document.createElement('table');
-            const usedCombinations = new set(); // Keep track of what's already been used in the bingo board
+            const usedCombinations = new Set(); // Keep track of what's already been used in the bingo board
 
             function getUniqueCombo() {
                 let animalIcon, statusIcon, uniqueSetKey;
