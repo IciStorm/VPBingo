@@ -172,7 +172,7 @@
         }
 
         function getValidCombo(iconArray, seed, index, pinataIcon) {
-            const validIcons = validCombinations[pinataIcon] || iconArray;
+            const validIcons = validCombos[pinataIcon] || iconArray;
             const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
             return validIcons[randomIndex];
         }
