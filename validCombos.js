@@ -26,7 +26,7 @@ const whiteScotchSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true'
 ];
 
-const validCombinations = {
+const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Arocknid.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Badgesicie.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Barkbark.PNG?raw=true' : petSet,
