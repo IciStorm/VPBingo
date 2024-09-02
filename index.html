@@ -25,6 +25,16 @@
             display: inline-block;
         }
 
+        .status-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none; /* Prevents interference with clicks */
+        }
+
         .pinata-icon {
             width: 80px;
             height: 75px;
@@ -90,6 +100,9 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true'
         ];
 
+        const checkmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_Check.PNG?raw=true';
+        const crossmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_X.PNG?raw=true';
+
         // Simple PRNG based on a seed
         function seededRandom(seed) {
             var x = Math.sin(seed) * 10000;
@@ -105,6 +118,22 @@
             const validIcons = validCombos[pinataIcon] || awardTypeIcons;
             const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
             return validIcons[randomIndex];
+        }
+
+        function toggleOverlayImage(cell) {
+            const existingOverlay = cell.querySelector('.status-icon');
+            if (existingOverlay) {
+                if (existingOverlay.src === checkmark) {
+                    existingOverlay.src = crossmark; // Switch to Crossmark on second click
+                } else if (existingOverlay.src === crossmark) {
+                    existingOverlay.remove(); // Remove overlay if third click
+                }
+            } else {
+                const overlayImg = document.createElement('img');
+                overlayImg.src = checkmark; // Use Checkmark on first click
+                overlayImg.classList.add('status-icon');
+                cell.appendChild(overlayImg);
+            }
         }
         
         function createTable() {
