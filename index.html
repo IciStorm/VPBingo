@@ -17,32 +17,37 @@
         }
 
         td {
-            position: relative; /* Ensures the pinataIcon and awardIcon are positioned correctly within the cell */
+            position: relative;
         }
 
         .icon-container {
-            position: relative; /* Position context for award-type */
-            display: inline-block; /* Makes the container fit the size of the pinataIcon */
+            position: relative;
+            display: inline-block;
         }
 
         .pinata-icon {
             width: 80px;
             height: 75px;
             object-fit: cover;
-            display: block; /* Ensures the icon is displayed as a block-level element */
+            display: block;
         }
 
         .award-type {
             width: 40px;
             height: 40px;
             object-fit: cover;
-            position: absolute; /* Overlay the award icon */
-            bottom: -15px; /* Positioning from the bottom of the container */
-            right: -15px; /* Positioning from the right of the container */
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
         }
 
         #tableContainer {
             position: relative;
+        }
+
+        td:hover {
+            background-color: #d3d3d3; // Color
+            cursor: pointer;
         }
     </style>
 </head>
@@ -85,7 +90,7 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true'
         ];
 
-        // Simple PRNG (Pseudo-Random Number Generator) based on a seed
+        // Simple PRNG based on a seed
         function seededRandom(seed) {
             var x = Math.sin(seed) * 10000;
             return x - Math.floor(x);
@@ -96,8 +101,8 @@
             return iconArray[randomIndex];
         }
 
-        function getValidCombo(pinataIcon, seed, index) { // Highlighted change: Function signature updated
-            const validIcons = validCombos[pinataIcon] || awardTypeIcons; // Highlighted change: iconArray replaced with awardTypeIcons
+        function getValidCombo(pinataIcon, seed, index) {
+            const validIcons = validCombos[pinataIcon] || awardTypeIcons;
             const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
             return validIcons[randomIndex];
         }
@@ -130,14 +135,14 @@
                     iconContainer.classList.add('icon-container');
 
                     const mainIcon = document.createElement('img');
-                    const pinataIcon = getRandomIcon(iconPool, seed, index); // Highlighted change: Store the pinataIcon
+                    const pinataIcon = getRandomIcon(iconPool, seed, index);
                     mainIcon.src = pinataIcon; // Highlighted change: Use pinataIcon here
                     mainIcon.classList.add('pinata-icon');
                     iconContainer.appendChild(mainIcon);
 
                     // For the award image overlay
                     const awardIcon = document.createElement('img');
-                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index); // Highlighted change: Use getValidCombo instead of getRandomIcon
+                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index);
                     awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
 
