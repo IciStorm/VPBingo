@@ -145,13 +145,12 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Twingersnap.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Whirlm.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Zumbug.PNG?raw=true'
-            // Add more icons
         ];
 
         const tipIcons = [
             'https://github.com/IciStorm/VPBingo/blob/main/images/VPBingo%20Test%20Icon%20TIP.png?raw=true',
             'https://raw.githubusercontent.com/username/repository-name/main/images/image2.jpg'
-            // Add more icons
+            // Add TiP Set when possible
         ];
 
         const awardTypeIcons = [
@@ -159,7 +158,6 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true'
-            // Add more icons
         ];
 
         // Simple PRNG (Pseudo-Random Number Generator) based on a seed
@@ -173,7 +171,7 @@
             return iconArray[randomIndex];
         }
 
-        function getValidCombo{iconArray, seed, index, pinataIcon) {
+        function getValidCombo(iconArray, seed, index, pinataIcon) {
             const validIcons = validCombinations[pinataIcon] || iconArray;
             const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
             return validIcons[randomIndex];
