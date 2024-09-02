@@ -118,20 +118,44 @@
         const checkmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_Check.PNG?raw=true';
         const crossmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_X.PNG?raw=true';
 
+        let usedCombinations = new Set();
+
         // Simple PRNG based on a seed
         function seededRandom(seed) {
             var x = Math.sin(seed) * 10000;
             return x - Math.floor(x);
         }
 
-        function getRandomIcon(iconArray, seed, index) {
+        /*function getRandomIcon(iconArray, seed, index) {
             const randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
             return iconArray[randomIndex];
+        }*/ DISABLED FOR TESTING
+
+        function getRandomIcon(iconArray, seed, index) {
+            let randomIndex;
+            let pinataIcon;
+            
+            // Keep generating until you find a unique icon (if necessary)
+            do {
+                randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
+                pinataIcon = iconArray[randomIndex];
+            } while (Array.from(usedCombinations).some(combo => combo.startsWith(pinataIcon)));
+        
+            return pinataIcon;
         }
 
         function getValidCombo(pinataIcon, seed, index) {
             const validIcons = validCombos[pinataIcon] || awardTypeIcons;
-            const randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
+
+            let combo;
+            let randomIndex;
+
+            do {
+                randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
+                combo = pinataIcon + '-' + validIcons[randomIndex]; // Create a unique string for the combination
+            } while (usedCombinations.has(combo));
+
+            usedCombinations.add(combo);
             return validIcons[randomIndex];
         }
 
@@ -152,6 +176,7 @@
         }
         
         function createTable() {
+            usedCombiinations.clear();
             let seed = document.getElementById('seedInput').value;
             if (seed === '') {
                 seed = Math.floor(Math.random() * 1000000000); // Generate a random seed if none is provided
