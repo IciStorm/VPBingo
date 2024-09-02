@@ -168,15 +168,15 @@
             const usedCombinations = new set(); // Keep track of what's already been used in the bingo board
 
             function getUniqueCombo() {
-                let animalIcon, awardIcon, uniqueSetKey;
+                let animalIcon, statusIcon, uniqueSetKey;
                 do { // Keep searching for something not already used
                     animalIcon = getRandomIcon(iconPool, seed, index);
-                    awardIcon = getValidCombo(pinataIcon, seed + 1000, index);
+                    statusIcon = getValidCombo(pinataIcon, seed + 1000, index);
                     uniqueSetKey = `${animalIcon}-${awardIcon}`;
                 } while (usedCombinations.has(uniqueSetKey)); // Ensure unique combo
 
                 usedCombinations.add(uniqueSetKey); // Mark combination as used
-                return { animalIcon, awardIcon };
+                return { animalIcon, statusIcon };
             }
 
             let index = 0; // To vary the seed for each cell
@@ -188,7 +188,7 @@
                     const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
 
                     // Get unique combination
-                    const { animalIcon, awardIcon } = getUniqueCombo();
+                    const { animalIcon, statusIcon } = getUniqueCombo();
 
                     // For the main pinata image
                     const iconContainer = document.createElement('div');
