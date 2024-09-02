@@ -132,43 +132,48 @@
         }*/
 
         function getRandomIcon(iconArray, seed, index) {
-            let randomIndex;
-            let pinataIcon;
             let attempts = 0;
+            let pinataIcon;
             
-            // Keep generating until you find a unique icon (if necessary)
-            do {
-                randomIndex = Math.floor(seededRandom(seed + index) * iconArray.length);
+            while (attempts < iconArray.length) {
+                const randomIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
                 pinataIcon = iconArray[randomIndex];
-                attempts++;
-
-                if (attempts > iconArray.length) {
-                    break;
-                }
-            } while (Array.from(usedCombinations).some(combo => combo.startsWith(pinataIcon)));
+                
+                // Check if there are valid combinations left for this icon
+                const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+                const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
         
-            return pinataIcon;
+                if (hasValidCombo) {
+                    return pinataIcon;
+                }
+                
+                attempts++;
+            }
+
+            // Should NOT happen
+            return iconArray[Math.floor(Math.random() * iconArray.length)];
         }
 
         function getValidCombo(pinataIcon, seed, index) {
             const validIcons = validCombos[pinataIcon] || awardTypeIcons;
-
-            let combo;
-            let randomIndex;
+        
             let attempts = 0;
-
-            do {
-                randomIndex = Math.floor(seededRandom(seed + index) * validIcons.length);
-                combo = pinataIcon + '-' + validIcons[randomIndex]; // Create a unique string for the combination
-                attempts++;
-
-                if (attempts > validIcons.length) {
-                    break;
+            let combo;
+        
+            while (attempts < validIcons.length) {
+                const randomIndex = Math.floor(seededRandom(seed + index + attempts) * validIcons.length);
+                combo = pinataIcon + '-' + validIcons[randomIndex];
+        
+                if (!usedCombinations.has(combo)) {
+                    usedCombinations.add(combo);
+                    return validIcons[randomIndex];
                 }
-            } while (usedCombinations.has(combo));
-
-            usedCombinations.add(combo);
-            return validIcons[randomIndex];
+        
+                attempts++;
+            }
+        
+            // Should NOT happen
+            return validIcons[Math.floor(Math.random() * validIcons.length)];
         }
 
         function toggleOverlayImage(cell) {
