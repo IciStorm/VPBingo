@@ -167,6 +167,8 @@
             const table = document.createElement('table');
             const usedCombinations = new Set(); // Keep track of what's already been used in the bingo board
 
+            const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
+
             function getUniqueCombo() {
                 let animalIcon, statusIcon, uniqueSetKey;
                 do { // Keep searching for something not already used
@@ -185,7 +187,6 @@
 
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
-                    const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : pinataIcons;
 
                     // Get unique combination
                     const { animalIcon, statusIcon } = getUniqueCombo();
