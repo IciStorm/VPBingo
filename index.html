@@ -118,8 +118,8 @@
         <hr>
 
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Force Unique Piñatas:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="">(WIP) Force Unique Piñatas:</label>
+            <input type="checkbox" id="" onchange="createTable()">
         </span>
         
         <span class="checkbox-container">
@@ -128,30 +128,30 @@
         </span>
 
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Enable Additonal Missions:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="">(WIP) Enable Additonal Missions:</label>
+            <input type="checkbox" id="" onchange="createTable()">
         </span>
         
         <hr>
         
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Disable Visit Ribbon:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
+            <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
         </span>
     
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Disable Variant Ribbons:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
+            <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
         </span>
     
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Disable Romance Ribbon:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="disableRomanceRibbon">Disable Romance Ribbon:</label>
+            <input type="checkbox" id="disableRomanceRibbon" onchange="createTable()">
         </span>
     
         <span class="checkbox-container">
-            <label for="enableTipSet">(WIP) Disable Master Romance Ribbon:</label>
-            <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            <label for="disableVisitRibbon">Disable Master Romance Ribbon:</label>
+            <input type="checkbox" id="disableRomanceRibbon" onchange="createTable()">
         </span>
         
     </div>
@@ -185,7 +185,25 @@
 
         let usedCombinations = new Set();
 
-        // Simple PRNG based on a seed
+        function getEnabledAwards() {
+            const enabledAwards = [];
+            if (!document.getElementById('disableVisitRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.visitRibbon);
+            }
+            if (!document.getElementById('disableVariantRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.variantRibbon);
+            }
+            if (!document.getElementById('disableRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.romanceRibbon);
+            }
+            if (!document.getElementById('disableMasterRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
+            }
+            // Add other awards as necessary
+            return enabledAwards;
+        }
+
+        // RNG Generator so things get random
         function seededRandom(seed) {
             var x = Math.sin(seed) * 10000;
             return x - Math.floor(x);
