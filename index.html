@@ -348,6 +348,14 @@
                     cell.appendChild(iconContainer);
                     row.appendChild(cell);
 
+                    cell.addEventListener('mouseover', function () {
+                        showTooltip(cell, `Tooltip for ${pinataIcon} - Award: ${awardIcon.src.split('/').pop()}`);
+                    });
+                    
+                    cell.addEventListener('mouseout', function () {
+                        hideTooltip();
+                    });
+
                     cell.addEventListener('click', function () {
                         toggleOverlayImage(cell);
                     });
