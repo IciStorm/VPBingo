@@ -13,18 +13,6 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
-
-        #tooltipContainer {
-            position: absolute;
-            top: 30px;
-            left: calc(50% - 250px); /* Position it relative to the table */
-            width: 200px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            display: none; /* Initially hidden */
-        }
         
         #settingsContainer {
             display: flex;
@@ -108,8 +96,6 @@
     </style>
 </head>
 <body>
-
-    <div id="tooltipContainer">Example Content</div>
 
     <div id="tableContainer"></div>
     
@@ -282,27 +268,6 @@
                 overlayImg.classList.add('status-icon');
                 cell.appendChild(overlayImg);
             }
-        }
-
-        function showTooltip(cell, content) {
-            const tooltip = document.getElementById('tooltipContainer');
-            
-            // Set the content of the tooltip
-            tooltip.textContent = content;
-            
-            // Get the position of the cell and adjust the tooltip's position accordingly
-            const cellRect = cell.getBoundingClientRect();
-            tooltip.style.top = `${window.scrollY + cellRect.top}px`;  // Align vertically with the top of the cell
-            tooltip.style.left = `${window.scrollX + cellRect.left - tooltip.offsetWidth - 40}px`;  // Align left, with 40px padding
-        
-            // Show the tooltip
-            tooltip.style.display = 'block';
-        }
-        
-        function hideTooltip() {
-            const tooltip = document.getElementById('tooltipContainer');
-            // Hide the tooltip
-            tooltip.style.display = 'none';
         }
         
         function createTable() {
