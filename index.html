@@ -15,8 +15,8 @@
         }
 
         #tooltipContainer {
-            top: 100px;
-            left: 30px; /* Position it relative to the table */
+            top: 30px;
+            left: 50px; /* Position it relative to the table */
             width: 200px;
             padding: 10px;
             background-color: #f9f9f9;
@@ -64,6 +64,7 @@
         }
 
         .icon-container {
+            position: relative;
             display: inline-block;
             pointer-events: auto;
         }
@@ -296,6 +297,12 @@
             tooltip.style.display = 'block';
         }
         
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltipContainer');
+            // Hide the tooltip
+            tooltip.style.display = 'none';
+        }
+        
         function createTable() {
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
@@ -341,6 +348,10 @@
 
                     cell.addEventListener('mouseover', function () {
                         showTooltip(cell, `Tooltip for ${pinataIcon} - Award: ${awardIcon.src.split('/').pop()}`);
+                    });
+                    
+                    cell.addEventListener('mouseout', function () {
+                        hideTooltip();
                     });
 
                     cell.addEventListener('click', function () {
