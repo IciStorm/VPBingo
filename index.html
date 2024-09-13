@@ -15,9 +15,8 @@
         }
 
         #tooltipContainer {
-            position: absolute;
-            top: 200px;
-            left: 10px; /* Position it relative to the table */
+            top: 100px;
+            left: 30px; /* Position it relative to the table */
             width: 200px;
             padding: 10px;
             background-color: #f9f9f9;
@@ -290,11 +289,8 @@
             
             // Get the position of the cell and adjust the tooltip's position accordingly
             const cellRect = cell.getBoundingClientRect();
-            const tableContainerRect = document.getElementById('tableContainer').getBoundingClientRect();
-            
-            // Set the tooltip position relative to the table container, not the entire page
-            tooltip.style.top = `${cellRect.top - tableContainerRect.top + cellRect.height}px`;  // Align below the cell
-            tooltip.style.left = `${cellRect.left - tableContainerRect.left}px`;  // Align horizontally with the cell
+            tooltip.style.top = `${window.scrollY + cellRect.top}px`;  // Align vertically with the top of the cell
+            tooltip.style.left = `${window.scrollX + cellRect.left - tooltip.offsetWidth - 40}px`;  // Align left, with 40px padding
         
             // Show the tooltip
             tooltip.style.display = 'block';
