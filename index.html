@@ -288,10 +288,18 @@
             // Set the content of the tooltip
             tooltip.textContent = content;
             
+            // Get the position of the cell and adjust the tooltip's position accordingly
+            const cellRect = cell.getBoundingClientRect();
+            const tableContainerRect = document.getElementById('tableContainer').getBoundingClientRect();
+            
+            // Set the tooltip position relative to the table container, not the entire page
+            tooltip.style.top = `${cellRect.top - tableContainerRect.top + cellRect.height}px`;  // Align below the cell
+            tooltip.style.left = `${cellRect.left - tableContainerRect.left}px`;  // Align horizontally with the cell
+        
             // Show the tooltip
             tooltip.style.display = 'block';
         }
-                
+        
         function createTable() {
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
