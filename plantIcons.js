@@ -29,5 +29,5 @@ const plantIcons = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Turnip.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/VenusPinataTrap.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/WaterLily.PNG?raw=true',
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true',
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true'
 ];
