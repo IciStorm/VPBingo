@@ -36,6 +36,10 @@ const whiteScotchSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_MasterRomanceRibbon.PNG?raw=true'
 ];
 
+const plantSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
+];
+
 const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Arocknid.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Badgesicie.PNG?raw=true' : standardSet,
@@ -111,5 +115,37 @@ const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Taffly.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Twingersnap.PNG?raw=true' : petSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Whirlm.PNG?raw=true' : standardSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Zumbug.PNG?raw=true' : petSet
+    'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Zumbug.PNG?raw=true' : petSet,
+
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Apple.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Banana.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/BirdOfParadise.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Blackberry.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Bluebell.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Bullrush.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Buttercup.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Carrot.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Chili.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Corn.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Daisy.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Fir.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Gem.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Gooseberry.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Hazelnut.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Monkeynut.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Nightshade.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Oak.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Orchid.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/PoisonIvy.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Poppy.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Pumpkin.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Snapdragon.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Sunflower.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Thistle.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Toadstool.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Tulip.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Turnip.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/VenusPinataTrap.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/WaterLily.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true' : plantSet
 };
