@@ -249,27 +249,22 @@
             return awardTypeIcons[0];
         }
 
-        function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
+function getValidCombo(pinataIcon, seed, index) {
+    const validAwards = validCombos[pinataIcon]?.filter(award => getEnabledAwards().includes(award)) || [];
+    let attempts = 0;
+    
+    while (attempts < validAwards.length) {
+        const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
+        const award = validAwards[randomAwardIndex];
+        const combo = `${pinataIcon}-${award}`;
 
-            let attempts = 0;
-            let combo;
-
-            while (attempts < validIcons.length) {
-                const randomIndex = Math.floor(seededRandom(seed + index + attempts) * validIcons.length);
-                combo = pinataIcon + '-' + validIcons[randomIndex];
-
-                if (!usedCombinations.has(combo)) {
-                    usedCombinations.add(combo);
-                    return validIcons[randomIndex];
-                }
-
-                attempts++;
-            }
-
-            // If error, return 'X'
-            return awardTypeIcons[0];
+        if (!usedCombinations.has(combo)) {
+            usedCombinations.add(combo);
+            return award;
         }
+
+        attempts++;
+    }
 
         function toggleOverlayImage(cell) {
             const existingOverlay = cell.querySelector('.status-icon');
