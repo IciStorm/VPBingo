@@ -181,6 +181,7 @@
         ];
 
         const awardTypeIcons = [
+            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
@@ -200,16 +201,16 @@
         function getEnabledAwards() {
             const enabledAwards = [];
             if (!document.getElementById('disableVisitRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.visitRibbon);
+                enabledAwards.push(awardTypeIcons[1]);
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.variantRibbon);
+                enabledAwards.push(awardTypeIcons[2]);
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.romanceRibbon);
+                enabledAwards.push(awardTypeIcons[6]);
             }
             if (!document.getElementById('disableMasterRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
+                enabledAwards.push(awardTypeIcons[7]);
             }
             // Add other awards as necessary
             return enabledAwards;
@@ -231,8 +232,11 @@
                 
                 // Check if there are valid combinations left for this icon
                 const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+                const enabledAwards = getEnabledAwards();
+                
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-        
+                hasValidCombo = validIcons.some(awardIcon => enabledAwards.includes(awardIcon));
+                
                 if (hasValidCombo) {
                     return pinataIcon;
                 }
@@ -240,8 +244,8 @@
                 attempts++;
             }
 
-            // Should NOT happen
-            return iconArray[Math.floor(Math.random() * iconArray.length)];
+            // If error, return 'X'
+            return awardTypeIcons[0];
         }
 
         function getValidCombo(pinataIcon, seed, index) {
