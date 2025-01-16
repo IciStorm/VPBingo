@@ -204,7 +204,10 @@
                 enabledAwards.push(awardTypeIcons[1]); // Enable Visit Ribbon
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[2]); // Enable Variant Ribbon
+                enabledAwards.push(awardTypeIcons[2]); // Enable Variant Ribbons
+                enabledAwards.push(awardTypeIcons[3]);
+                enabledAwards.push(awardTypeIcons[4]);
+                enabledAwards.push(awardTypeIcons[5]);
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
                 enabledAwards.push(awardTypeIcons[6]); // Enable Romance Ribbon
@@ -247,7 +250,7 @@
 
         function getValidCombo(pinataIcon, seed, index) {
             const enabledAwards = getEnabledAwards
-            const validIcons = validCombos[pinataIcon] || enabledAwards;
+            const validIcons = [...new Set([...validCombos[pinataIcon], ...enabledAwards])];
         
             let attempts = 0;
             let combo;
