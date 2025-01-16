@@ -123,7 +123,7 @@
         </span>
         
         <span class="checkbox-container">
-            <label for="enableTipSet">Enable Trouble in Paradise Content:</label>
+            <label for="enableTipSet">Enable Trouble in Paradise Piñatas:</label>
             <input type="checkbox" id="enableTipSet" onchange="createTable()">
         </span>
 
@@ -143,12 +143,7 @@
             <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
             <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
         </span>
-
-        <span class="checkbox-container">
-            <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
-            <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
-        </span>
-        
+    
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
             <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
@@ -181,7 +176,6 @@
         ];
 
         const awardTypeIcons = [
-            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
@@ -201,21 +195,25 @@
         function getEnabledAwards() {
             const enabledAwards = [];
             if (!document.getElementById('disableVisitRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[1]); // Enable Visit Ribbon
+                enabledAwards.push(awardTypeIcons.visitRibbon);
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
+<<<<<<< HEAD
                 enabledAwards.push(awardTypeIcons[2]); // Enable Variant Ribbons
                 enabledAwards.push(awardTypeIcons[3]);
                 enabledAwards.push(awardTypeIcons[4]);
                 enabledAwards.push(awardTypeIcons[5]);
+=======
+                enabledAwards.push(awardTypeIcons.variantRibbon);
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[6]); // Enable Romance Ribbon
+                enabledAwards.push(awardTypeIcons.romanceRibbon);
             }
             if (!document.getElementById('disableMasterRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[7]); // Enable Master Romance Ribbon
+                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
             }
-            // Add other awards as necessary (resident)
+            // Add other awards as necessary
             return enabledAwards;
         }
 
@@ -244,13 +242,17 @@
                 attempts++;
             }
 
-            // If an error occurs, use the 'X' icon as award type
-            return awardTypeIcons[0];
+            // Should NOT happen
+            return iconArray[Math.floor(Math.random() * iconArray.length)];
         }
 
         function getValidCombo(pinataIcon, seed, index) {
+<<<<<<< HEAD
             const enabledAwards = getEnabledAwards();
             const validIcons = [...new Set([...validCombos[pinataIcon])];
+=======
+            const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         
             let attempts = 0;
             let combo;
@@ -267,8 +269,8 @@
                 attempts++;
             }
         
-            // If an error occurs, use the 'X' icon as award type
-            return awardTypeIcons[0];
+            // Should NOT happen
+            return validIcons[Math.floor(Math.random() * validIcons.length)];
         }
 
         function toggleOverlayImage(cell) {
