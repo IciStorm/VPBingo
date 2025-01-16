@@ -250,7 +250,7 @@
 
         function getValidCombo(pinataIcon, seed, index) {
             const enabledAwards = getEnabledAwards
-            const validIcons = [...new Set([...validCombos[pinataIcon], ...enabledAwards])];
+            const validIcons = [...new Set([...validCombos[pinataIcon], enabledAwards])];
         
             let attempts = 0;
             let combo;
