@@ -1,4 +1,4 @@
-ble<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -246,7 +246,7 @@ ble<!DOCTYPE html>
         }
 
         function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || enabledAwards;
+            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
         
             let attempts = 0;
             let combo;
