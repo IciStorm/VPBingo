@@ -308,28 +308,7 @@
                 
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
-
-                    // For the main pinata image
-                    const iconContainer = document.createElement('div');
-                    iconContainer.classList.add('icon-container');
-
-                    const mainIcon = document.createElement('img');
-                    const pinataIcon = getRandomIcon(iconPool, seed, index);
-                    mainIcon.src = pinataIcon;
-                    mainIcon.classList.add('pinata-icon');
-                    iconContainer.appendChild(mainIcon);
-
-                    // For the award image overlay
-                    const awardIcon = document.createElement('img');
-                    const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || enabledAwards;
-                    
-                    if (validAwards.length === 0) {
-                        awardIcon.src = awardTypeIcons[0]; // Error icon if no valid awards
-                    } else {
-                        const randomAward = validAwards[Math.floor(seededRandom(seed + index) * validAwards.length)];
-                        awardIcon.src = randomAward;
-                        usedCombinations.add(`${pinataIcon}-${randomAward}`);
-                    }
+                    getCombo();
                     
                     awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
@@ -350,6 +329,29 @@
             tableContainer.appendChild(table);
         }
 
+        function getCombo() {
+            // For the main pinata image
+            const iconContainer = document.createElement('div');
+            iconContainer.classList.add('icon-container');
+
+            const mainIcon = document.createElement('img');
+            const pinataIcon = getRandomIcon(iconPool, seed, index);
+            mainIcon.src = pinataIcon;
+            mainIcon.classList.add('pinata-icon');
+            iconContainer.appendChild(mainIcon);
+
+            // For the award image overlay
+            const awardIcon = document.createElement('img');
+            const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || enabledAwards;
+                    
+            if (validAwards.length === 0) {
+                 getCombo();
+            } else {
+                const randomAward = validAwards[Math.floor(seededRandom(seed + index) * validAwards.length)];
+                awardIcon.src = randomAward;
+               usedCombinations.add(`${pinataIcon}-${randomAward}`);
+            }
+        }
         // Create initial table with a random seed
         createTable();
     </script>
