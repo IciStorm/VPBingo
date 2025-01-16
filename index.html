@@ -145,7 +145,7 @@
         </span>
 
         <span class="checkbox-container">
-            <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
+            <label for="disableResidentRibbon">Disable Resident Ribbons:</label>
             <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
         </span>
 
@@ -205,12 +205,18 @@
             }
             if (document.getElementById('disableVariantRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[2]);
+                enabledAwards.delete(awardTypeIcons[3]);
+                enabledAwards.delete(awardTypeIcons[4]);
+                enabledAwards.delete(awardTypeIcons[5]);
             }
             if (document.getElementById('disableRomanceRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[6]);
             }
             if (document.getElementById('disableMasterRomanceRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[7]);
+            }
+            if (document.getElementById('disableResidentRibbon').checked) {
+                enabledAwards.delete(awardTypeIcons[8]);
             }
             return Array.from(enabledAwards);
         }
