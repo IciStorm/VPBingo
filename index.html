@@ -200,16 +200,16 @@
 
         function getEnabledAwards() {
             const enabledAwards = new Set(awardTypeIcons);
-            if (!document.getElementById('disableVisitRibbon').checked) {
+            if (document.getElementById('disableVisitRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[1]);
             }
-            if (!document.getElementById('disableVariantRibbon').checked) {
+            if (document.getElementById('disableVariantRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[2]);
             }
-            if (!document.getElementById('disableRomanceRibbon').checked) {
+            if (document.getElementById('disableRomanceRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[6]);
             }
-            if (!document.getElementById('disableMasterRomanceRibbon').checked) {
+            if (document.getElementById('disableMasterRomanceRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[7]);
             }
             return Array.from(enabledAwards);
@@ -223,18 +223,16 @@
 
         function getRandomIcon(iconArray, seed, index) {
             let attempts = 0;
-            let pinataIcon;
 
             while (attempts < iconArray.length) {
                 const randomIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
-                pinataIcon = iconArray[randomIndex];
+                const pinataIcon = iconArray[randomIndex];
 
-                // Check if there are valid combinations left for this icon
-                const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+                // Check if there are valid combinations left for this tile
+                const enabledAwards = getEnabledAwards();
+                const validIcons = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award));
 
-                const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-
-                if (hasValidCombo) {
+                if (validIcons && validIcons.length > 0) {
                     return pinataIcon;
                 }
 
