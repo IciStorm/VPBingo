@@ -232,12 +232,10 @@
                 
                 // Check if there are valid combinations left for this icon
                 const validIcons = validCombos[pinataIcon] || awardTypeIcons;
-                const enabledAwards = getEnabledAwards();
                 
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-                const hasValidAward = validIcons.some(awardIcon => enabledAwards.includes(awardIcon));
                 
-                if (hasValidCombo && hasValidAward) {
+                if (hasValidCombo) {
                     return pinataIcon;
                 }
                 
