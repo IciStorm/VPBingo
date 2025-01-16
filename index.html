@@ -235,9 +235,9 @@
                 const enabledAwards = getEnabledAwards();
                 
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-                hasValidCombo = validIcons.some(awardIcon => enabledAwards.includes(awardIcon));
+                const hasValidAward = validIcons.some(awardIcon => enabledAwards.includes(awardIcon));
                 
-                if (hasValidCombo) {
+                if (hasValidCombo && hasValidAward) {
                     return pinataIcon;
                 }
                 
