@@ -123,7 +123,7 @@
         </span>
         
         <span class="checkbox-container">
-            <label for="enableTipSet">Enable Trouble in Paradise Piñatas:</label>
+            <label for="enableTipSet">Enable Trouble in Paradise Content:</label>
             <input type="checkbox" id="enableTipSet" onchange="createTable()">
         </span>
 
@@ -143,7 +143,12 @@
             <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
             <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
         </span>
-    
+
+        <span class="checkbox-container">
+            <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
+            <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
+        </span>
+        
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
             <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
@@ -176,6 +181,7 @@
         ];
 
         const awardTypeIcons = [
+            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
@@ -195,18 +201,18 @@
         function getEnabledAwards() {
             const enabledAwards = [];
             if (!document.getElementById('disableVisitRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.visitRibbon);
+                enabledAwards.push(awardTypeIcons[1]); // Enable Visit Ribbon
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.variantRibbon);
+                enabledAwards.push(awardTypeIcons[2]); // Enable Variant Ribbon
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.romanceRibbon);
+                enabledAwards.push(awardTypeIcons[6]); // Enable Romance Ribbon
             }
             if (!document.getElementById('disableMasterRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
+                enabledAwards.push(awardTypeIcons[7]); // Enable Master Romance Ribbon
             }
-            // Add other awards as necessary
+            // Add other awards as necessary (resident)
             return enabledAwards;
         }
 
@@ -235,12 +241,12 @@
                 attempts++;
             }
 
-            // Should NOT happen
-            return iconArray[Math.floor(Math.random() * iconArray.length)];
+            // If an error occurs, use the 'X' icon as award type
+            return awardTypeIcons[0];
         }
 
         function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
         
             let attempts = 0;
             let combo;
@@ -257,8 +263,8 @@
                 attempts++;
             }
         
-            // Should NOT happen
-            return validIcons[Math.floor(Math.random() * validIcons.length)];
+            // If an error occurs, use the 'X' icon as award type
+            return awardTypeIcons[0];
         }
 
         function toggleOverlayImage(cell) {
