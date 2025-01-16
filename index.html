@@ -124,7 +124,10 @@
 
         <span class="checkbox-container">
             <label for="enableTipSet">Enable Trouble in Paradise Piñatas:</label>
+<<<<<<< HEAD
             <label for="enableTipSet">Enable Trouble in Paradise Content:</label>
+=======
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             <input type="checkbox" id="enableTipSet" onchange="createTable()">
         </span>
 
@@ -145,11 +148,14 @@
             <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
         </span>
     
+<<<<<<< HEAD
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
             <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
         </span>
         
+=======
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
             <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
@@ -182,7 +188,6 @@
         ];
 
         const awardTypeIcons = [
-            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
@@ -203,6 +208,7 @@
             const enabledAwards = [];
             if (!document.getElementById('disableVisitRibbon').checked) {
                 enabledAwards.push(awardTypeIcons.visitRibbon);
+<<<<<<< HEAD
                 enabledAwards.push(awardTypeIcons[1]); // Enable Visit Ribbon
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
@@ -219,6 +225,19 @@
             }
             // Add other awards as necessary
             // Add other awards as necessary (resident)
+=======
+            }
+            if (!document.getElementById('disableVariantRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.variantRibbon);
+            }
+            if (!document.getElementById('disableRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.romanceRibbon);
+            }
+            if (!document.getElementById('disableMasterRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
+            }
+            // Add other awards as necessary
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             return enabledAwards;
         }
 
@@ -249,14 +268,21 @@
 
             // Should NOT happen
             return iconArray[Math.floor(Math.random() * iconArray.length)];
+<<<<<<< HEAD
             // If an error occurs, use the 'X' icon as award type
             return awardTypeIcons[0];
+=======
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         }
 
         function getValidCombo(pinataIcon, seed, index) {
             const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+<<<<<<< HEAD
             const validIcons = validCombos[pinataIcon] || getEnabledAwards();
 
+=======
+        
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             let attempts = 0;
             let combo;
 
@@ -271,11 +297,17 @@
 
                 attempts++;
             }
+<<<<<<< HEAD
 
             // Should NOT happen
             return validIcons[Math.floor(Math.random() * validIcons.length)];
             // If an error occurs, use the 'X' icon as award type
             return awardTypeIcons[0];
+=======
+        
+            // Should NOT happen
+            return validIcons[Math.floor(Math.random() * validIcons.length)];
+>>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         }
 
         function toggleOverlayImage(cell) {
