@@ -118,8 +118,6 @@
         <hr>
 
         <span class="checkbox-container">
-            <label for="">(WIP) Force Unique Piñatas:</label>
-            <input type="checkbox" id="" onchange="createTable()">
             <label for="forceUnique">Force Unique Piñatas:</label>
             <input type="checkbox" id="forceUnique" onchange="createTable()">
         </span>
@@ -201,26 +199,19 @@
         let usedCombinations = new Set();
 
         function getEnabledAwards() {
-            const enabledAwards = [];
             const enabledAwards = new Set(awardTypeIcons);
             if (!document.getElementById('disableVisitRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[1]);
                 enabledAwards.delete(awardTypeIcons[1]);
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[2]);
                 enabledAwards.delete(awardTypeIcons[2]);
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[6]);
                 enabledAwards.delete(awardTypeIcons[6]);
             }
             if (!document.getElementById('disableMasterRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons[7]);
                 enabledAwards.delete(awardTypeIcons[7]);
             }
-            // Add other awards as necessary
-            return enabledAwards;
             return Array.from(enabledAwards);
         }
 
@@ -255,7 +246,6 @@
         }
 
         function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || awardTypeIcons;
             const validIcons = validCombos[pinataIcon] || getEnabledAwards();
 
             let attempts = 0;
@@ -331,7 +321,6 @@
 
                     // For the award image overlay
                     const awardIcon = document.createElement('img');
-                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index);
                     const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || enabledAwards;
                     
                     if (validAwards.length === 0) {
