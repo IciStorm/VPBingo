@@ -13,7 +13,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
-        
+
         #settingsContainer {
             display: flex;
             flex-direction: column;
@@ -98,12 +98,12 @@
 <body>
 
     <div id="tableContainer"></div>
-    
+
     <div id="settingsContainer">
 
         <label for="seedInput">Enter Custom Seed:</label>
         <input type="text" id="seedInput" placeholder="Leave empty for random seed">
-        
+
         <label for="tableSize">Table Size:</label>
         <select id="tableSize" onchange="createTable()">
             <option value="3">3x3</option>
@@ -118,10 +118,12 @@
         <hr>
 
         <span class="checkbox-container">
+            <label for="">(WIP) Force Unique Piñatas:</label>
+            <input type="checkbox" id="" onchange="createTable()">
             <label for="forceUnique">Force Unique Piñatas:</label>
             <input type="checkbox" id="forceUnique" onchange="createTable()">
         </span>
-        
+
         <span class="checkbox-container">
             <label for="enableTipSet">Enable Trouble in Paradise Content:</label>
             <input type="checkbox" id="enableTipSet" onchange="createTable()">
@@ -136,9 +138,9 @@
             <label for="">(WIP) Enable Additonal Missions:</label>
             <input type="checkbox" id="" onchange="createTable()">
         </span>
-        
+
         <hr>
-        
+
         <span class="checkbox-container">
             <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
             <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
@@ -148,22 +150,22 @@
             <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
             <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
         </span>
-        
+
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
             <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
         </span>
-    
+
         <span class="checkbox-container">
             <label for="disableRomanceRibbon">Disable Romance Ribbon:</label>
             <input type="checkbox" id="disableRomanceRibbon" onchange="createTable()">
         </span>
-    
+
         <span class="checkbox-container">
             <label for="disableMasterRomanceRibbon">Disable Master Romance Ribbon:</label>
             <input type="checkbox" id="disableMasterRomanceRibbon" onchange="createTable()">
         </span>
-        
+
     </div>
 
     <script src="validCombos.js"></script>
@@ -199,19 +201,26 @@
         let usedCombinations = new Set();
 
         function getEnabledAwards() {
+            const enabledAwards = [];
             const enabledAwards = new Set(awardTypeIcons);
             if (!document.getElementById('disableVisitRibbon').checked) {
+                enabledAwards.push(awardTypeIcons[1]);
                 enabledAwards.delete(awardTypeIcons[1]);
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
+                enabledAwards.push(awardTypeIcons[2]);
                 enabledAwards.delete(awardTypeIcons[2]);
             }
             if (!document.getElementById('disableRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons[6]);
                 enabledAwards.delete(awardTypeIcons[6]);
             }
             if (!document.getElementById('disableMasterRomanceRibbon').checked) {
+                enabledAwards.push(awardTypeIcons[7]);
                 enabledAwards.delete(awardTypeIcons[7]);
             }
+            // Add other awards as necessary
+            return enabledAwards;
             return Array.from(enabledAwards);
         }
 
@@ -224,20 +233,20 @@
         function getRandomIcon(iconArray, seed, index) {
             let attempts = 0;
             let pinataIcon;
-            
+
             while (attempts < iconArray.length) {
                 const randomIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
                 pinataIcon = iconArray[randomIndex];
-                
+
                 // Check if there are valid combinations left for this icon
                 const validIcons = validCombos[pinataIcon] || awardTypeIcons;
-                
+
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-                
+
                 if (hasValidCombo) {
                     return pinataIcon;
                 }
-                
+
                 attempts++;
             }
 
@@ -246,23 +255,24 @@
         }
 
         function getValidCombo(pinataIcon, seed, index) {
+            const validIcons = validCombos[pinataIcon] || awardTypeIcons;
             const validIcons = validCombos[pinataIcon] || getEnabledAwards();
-        
+
             let attempts = 0;
             let combo;
-        
+
             while (attempts < validIcons.length) {
                 const randomIndex = Math.floor(seededRandom(seed + index + attempts) * validIcons.length);
                 combo = pinataIcon + '-' + validIcons[randomIndex];
-        
+
                 if (!usedCombinations.has(combo)) {
                     usedCombinations.add(combo);
                     return validIcons[randomIndex];
                 }
-        
+
                 attempts++;
             }
-        
+
             // If error, return 'X'
             return awardTypeIcons[0];
         }
@@ -282,7 +292,7 @@
                 cell.appendChild(overlayImg);
             }
         }
-        
+
         function createTable() {
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
@@ -305,10 +315,32 @@
             for (let i = 0; i < size; i++) {
                 const row = document.createElement('tr');
                 const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : enablePlantSet ? [...plantIcons, ...pinataIcons] : pinataIcons;
-                
+
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
-                    getCombo();
+
+                    // For the main pinata image
+                    const iconContainer = document.createElement('div');
+                    iconContainer.classList.add('icon-container');
+
+                    const mainIcon = document.createElement('img');
+                    const pinataIcon = getRandomIcon(iconPool, seed, index);
+                    mainIcon.src = pinataIcon;
+                    mainIcon.classList.add('pinata-icon');
+                    iconContainer.appendChild(mainIcon);
+
+                    // For the award image overlay
+                    const awardIcon = document.createElement('img');
+                    awardIcon.src = getValidCombo(pinataIcon, seed + 1000, index);
+                    const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || enabledAwards;
+                    
+                    if (validAwards.length === 0) {
+                        awardIcon.src = awardTypeIcons[0]; // Error icon if no valid awards
+                    } else {
+                        const randomAward = validAwards[Math.floor(seededRandom(seed + index) * validAwards.length)];
+                        awardIcon.src = randomAward;
+                        usedCombinations.add(`${pinataIcon}-${randomAward}`);
+                    }
                     
                     awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
@@ -322,36 +354,13 @@
 
                     index++;
                 }
-                
+
                 table.appendChild(row);
             }
 
             tableContainer.appendChild(table);
         }
 
-        function getCombo() {
-            // For the main pinata image
-            const iconContainer = document.createElement('div');
-            iconContainer.classList.add('icon-container');
-
-            const mainIcon = document.createElement('img');
-            const pinataIcon = getRandomIcon(iconPool, seed, index);
-            mainIcon.src = pinataIcon;
-            mainIcon.classList.add('pinata-icon');
-            iconContainer.appendChild(mainIcon);
-
-            // For the award image overlay
-            const awardIcon = document.createElement('img');
-            const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || enabledAwards;
-                    
-            if (validAwards.length === 0) {
-                 getCombo();
-            } else {
-                const randomAward = validAwards[Math.floor(seededRandom(seed + index) * validAwards.length)];
-                awardIcon.src = randomAward;
-               usedCombinations.add(`${pinataIcon}-${randomAward}`);
-            }
-        }
         // Create initial table with a random seed
         createTable();
     </script>
