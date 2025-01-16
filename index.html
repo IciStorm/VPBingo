@@ -246,7 +246,8 @@
         }
 
         function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
+            const enabledAwards = getEnabledAwards
+            const validIcons = validCombos[pinataIcon] || enabledAwards;
         
             let attempts = 0;
             let combo;
@@ -300,7 +301,8 @@
 
             const table = document.createElement('table');
             const enabledAwards = getEnabledAwards();
-
+            console.log("Enabled Awards:", enabledAwards);
+            
             let index = 0; // To vary the seed for each cell
             for (let i = 0; i < size; i++) {
                 const row = document.createElement('tr');
