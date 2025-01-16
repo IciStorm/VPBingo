@@ -299,7 +299,8 @@ ble<!DOCTYPE html>
             tableContainer.innerHTML = ''; // Clear the previous table
 
             const table = document.createElement('table');
-            enabledAwards = getEnabledAwards();
+            enabledAwards = 0;
+            getEnabledAwards();
 
             let index = 0; // To vary the seed for each cell
             for (let i = 0; i < size; i++) {
