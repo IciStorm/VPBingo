@@ -231,7 +231,7 @@
                 pinataIcon = iconArray[randomIndex];
                 
                 // Check if there are valid combinations left for this icon
-                const validIcons = validCombos[pinataIcon] || awardTypeIcons;
+                const validIcons = validCombos[pinataIcon] || enabledAwards;
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
         
                 if (hasValidCombo) {
@@ -246,7 +246,7 @@
         }
 
         function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
+            const validIcons = validCombos[pinataIcon] || enabledAwards;
         
             let attempts = 0;
             let combo;
