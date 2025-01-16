@@ -13,7 +13,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
-
+        
         #settingsContainer {
             display: flex;
             flex-direction: column;
@@ -98,12 +98,12 @@
 <body>
 
     <div id="tableContainer"></div>
-
+    
     <div id="settingsContainer">
 
         <label for="seedInput">Enter Custom Seed:</label>
         <input type="text" id="seedInput" placeholder="Leave empty for random seed">
-
+        
         <label for="tableSize">Table Size:</label>
         <select id="tableSize" onchange="createTable()">
             <option value="3">3x3</option>
@@ -121,13 +121,9 @@
             <label for="">(WIP) Force Unique Piñatas:</label>
             <input type="checkbox" id="" onchange="createTable()">
         </span>
-
+        
         <span class="checkbox-container">
-            <label for="enableTipSet">Enable Trouble in Paradise Piñatas:</label>
-<<<<<<< HEAD
             <label for="enableTipSet">Enable Trouble in Paradise Content:</label>
-=======
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             <input type="checkbox" id="enableTipSet" onchange="createTable()">
         </span>
 
@@ -140,37 +136,34 @@
             <label for="">(WIP) Enable Additonal Missions:</label>
             <input type="checkbox" id="" onchange="createTable()">
         </span>
-
+        
         <hr>
-
+        
         <span class="checkbox-container">
             <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
             <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
         </span>
-    
-<<<<<<< HEAD
+
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Resident Ribbons:</label>
             <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
         </span>
         
-=======
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         <span class="checkbox-container">
             <label for="disableVariantRibbon">Disable Variant Ribbons:</label>
             <input type="checkbox" id="disableVariantRibbon" onchange="createTable()">
         </span>
-
+    
         <span class="checkbox-container">
             <label for="disableRomanceRibbon">Disable Romance Ribbon:</label>
             <input type="checkbox" id="disableRomanceRibbon" onchange="createTable()">
         </span>
-
+    
         <span class="checkbox-container">
             <label for="disableVisitRibbon">Disable Master Romance Ribbon:</label>
             <input type="checkbox" id="disableRomanceRibbon" onchange="createTable()">
         </span>
-
+        
     </div>
 
     <script src="validCombos.js"></script>
@@ -208,24 +201,6 @@
             const enabledAwards = [];
             if (!document.getElementById('disableVisitRibbon').checked) {
                 enabledAwards.push(awardTypeIcons.visitRibbon);
-<<<<<<< HEAD
-                enabledAwards.push(awardTypeIcons[1]); // Enable Visit Ribbon
-            }
-            if (!document.getElementById('disableVariantRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.variantRibbon);
-                enabledAwards.push(awardTypeIcons[2]); // Enable Variant Ribbon
-            }
-            if (!document.getElementById('disableRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.romanceRibbon);
-                enabledAwards.push(awardTypeIcons[6]); // Enable Romance Ribbon
-            }
-            if (!document.getElementById('disableMasterRomanceRibbon').checked) {
-                enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
-                enabledAwards.push(awardTypeIcons[7]); // Enable Master Romance Ribbon
-            }
-            // Add other awards as necessary
-            // Add other awards as necessary (resident)
-=======
             }
             if (!document.getElementById('disableVariantRibbon').checked) {
                 enabledAwards.push(awardTypeIcons.variantRibbon);
@@ -237,7 +212,6 @@
                 enabledAwards.push(awardTypeIcons.masterRomanceRibbon);
             }
             // Add other awards as necessary
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             return enabledAwards;
         }
 
@@ -250,64 +224,46 @@
         function getRandomIcon(iconArray, seed, index) {
             let attempts = 0;
             let pinataIcon;
-
+            
             while (attempts < iconArray.length) {
                 const randomIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
                 pinataIcon = iconArray[randomIndex];
-
+                
                 // Check if there are valid combinations left for this icon
                 const validIcons = validCombos[pinataIcon] || awardTypeIcons;
                 const hasValidCombo = validIcons.some(awardIcon => !usedCombinations.has(pinataIcon + '-' + awardIcon));
-
+        
                 if (hasValidCombo) {
                     return pinataIcon;
                 }
-
+                
                 attempts++;
             }
 
             // Should NOT happen
             return iconArray[Math.floor(Math.random() * iconArray.length)];
-<<<<<<< HEAD
-            // If an error occurs, use the 'X' icon as award type
-            return awardTypeIcons[0];
-=======
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         }
 
         function getValidCombo(pinataIcon, seed, index) {
             const validIcons = validCombos[pinataIcon] || awardTypeIcons;
-<<<<<<< HEAD
-            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
-
-=======
         
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
             let attempts = 0;
             let combo;
-
+        
             while (attempts < validIcons.length) {
                 const randomIndex = Math.floor(seededRandom(seed + index + attempts) * validIcons.length);
                 combo = pinataIcon + '-' + validIcons[randomIndex];
-
+        
                 if (!usedCombinations.has(combo)) {
                     usedCombinations.add(combo);
                     return validIcons[randomIndex];
                 }
-
+        
                 attempts++;
             }
-<<<<<<< HEAD
-
-            // Should NOT happen
-            return validIcons[Math.floor(Math.random() * validIcons.length)];
-            // If an error occurs, use the 'X' icon as award type
-            return awardTypeIcons[0];
-=======
         
             // Should NOT happen
             return validIcons[Math.floor(Math.random() * validIcons.length)];
->>>>>>> parent of 09e5be7 (Error Handling and Enabling certain ribbons)
         }
 
         function toggleOverlayImage(cell) {
@@ -325,7 +281,7 @@
                 cell.appendChild(overlayImg);
             }
         }
-
+        
         function createTable() {
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
@@ -347,7 +303,7 @@
             for (let i = 0; i < size; i++) {
                 const row = document.createElement('tr');
                 const iconPool = enableTipSet ? [...tipIcons, ...pinataIcons] : enablePlantSet ? [...plantIcons, ...pinataIcons] : pinataIcons;
-
+                
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
 
@@ -376,7 +332,7 @@
 
                     index++;
                 }
-
+                
                 table.appendChild(row);
             }
 
