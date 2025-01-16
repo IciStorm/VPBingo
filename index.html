@@ -266,8 +266,8 @@
                 attempts++;
             }
         
-            // Should NOT happen
-            return validIcons[Math.floor(Math.random() * validIcons.length)];
+            // If error, return 'X'
+            return awardTypeIcons[0];
         }
 
         function toggleOverlayImage(cell) {
