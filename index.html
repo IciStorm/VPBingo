@@ -309,7 +309,7 @@
                     const iconContainer = document.createElement('div');
                     iconContainer.classList.add('icon-container');
 
-                    const {pinata, award};
+                    {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
                     
                     if (forceUnique) {
                         const randomIndex = Math.floor(seededRandom(seed + index) * unusedPinatas.length);
@@ -322,9 +322,9 @@
                             ? validAwards[Math.floor(seededRandom(seed + index + 1) * validAwards.length)] : 
                             awardTypeIcons[0];
                     }
-                    else {
-                        {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
-                    }
+                    //else {
+                    //    {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
+                    //}
                         
                     const mainIcon = document.createElement('img');
                     mainIcon.src = pinata;
