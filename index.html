@@ -290,6 +290,7 @@
 
             const table = document.createElement('table');
             const enabledAwards = getEnabledAwards();
+            const forceUnique = document.getElementById('forceUnique').checked;
 
             const iconPool = // Probably want this to be a set so options are easily added together
                 (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
