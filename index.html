@@ -235,7 +235,7 @@
 
         function getValidCombo(iconArray, enabledAwards, seed, index) {
             let attempts = 0;
-            while (attempts < iconArray.length) {
+            while (attempts < 10000) {
                 const randomPinataIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
                 const pinataIcon = iconArray[randomPinataIndex];
         
