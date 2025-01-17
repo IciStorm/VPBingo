@@ -321,8 +321,9 @@
                             ? validAwards[Math.floor(seededRandom(seed + index + 1) * validAwards.length)] : 
                             awardTypeIcons[0];
                     }
-                    else
+                    else {
                         const {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
+                    }
                         
                     const mainIcon = document.createElement('img');
                     mainIcon.src = pinata;
