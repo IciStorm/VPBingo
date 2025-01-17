@@ -172,12 +172,18 @@
 
     <script>
 
-        const tipIcons = [
+        const tipIcons = [ // Move to js file when icons are obtained
             'Sweetle',
             'Camello',
             'Bispotti',
             'Sour Lemmoning'
             // Add TiP Set when possible
+        ];
+
+        const tipPlantIcons = [ // Move to js file when icons are obtained
+            'PlantA',
+            'PlantB',
+            'PlantC'
         ];
 
         const awardTypeIcons = [
@@ -291,6 +297,7 @@
                 const iconPool = // Probably want this to be a set so options are easily added together
                     enableTipSet ? [...tipIcons, ...pinataIcons] : 
                     enablePlantSet ? [...plantIcons, ...pinataIcons] : 
+                    (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] : 
                     pinataIcons;
 
                 for (let j = 0; j < size; j++) {
