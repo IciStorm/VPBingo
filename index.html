@@ -309,7 +309,7 @@
                     const iconContainer = document.createElement('div');
                     iconContainer.classList.add('icon-container');
 
-                    const {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
+                    let {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
                     
                     if (forceUnique) {
                         const randomIndex = Math.floor(seededRandom(seed + index) * unusedPinatas.length);
