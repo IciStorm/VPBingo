@@ -145,7 +145,7 @@
         </span>
 
         <span class="checkbox-container">
-            <label for="disableResidentRibbon">Disable Resident Ribbons:</label>
+            <label for="disableResidentRibbon">Disable Resident Ribbon:</label>
             <input type="checkbox" id="disableResidentRibbon" onchange="createTable()">
         </span>
 
@@ -290,24 +290,39 @@
 
             const table = document.createElement('table');
             const enabledAwards = getEnabledAwards();
-            
+
+            const iconPool = // Probably want this to be a set so options are easily added together
+                (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
+                enableTipSet ? [...tipIcons, ...pinataIcons] : 
+                enablePlantSet ? [...plantIcons, ...pinataIcons] :  
+                pinataIcons;
+
+            let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
             let index = 0; // To vary the seed for each cell
+            
             for (let i = 0; i < size; i++) {
                 const row = document.createElement('tr');
-                const iconPool = // Probably want this to be a set so options are easily added together
-                    (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
-                    enableTipSet ? [...tipIcons, ...pinataIcons] : 
-                    enablePlantSet ? [...plantIcons, ...pinataIcons] :  
-                    pinataIcons;
 
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
                     const iconContainer = document.createElement('div');
                     iconContainer.classList.add('icon-container');
 
-                    // Gets a combination
-                    const {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
 
+                    
+                    if (forceUnique) {
+                        const randomIndex = Math.floor(seededRandom(seed + index) * unusedPinatas.length);
+                        pinata = unusedPinatas[randomIndex];
+                        unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
+
+                        // Get a random valid award for the selected piñata
+                        const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
+                        award = validAwards.length > 0
+                            ? validAwards[Math.floor(seededRandom(seed + index + 1) * validAwards.length)]
+                            : awardTypeIcons[0];
+                    else
+                        const {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
+                        
                     const mainIcon = document.createElement('img');
                     mainIcon.src = pinata;
                     mainIcon.classList.add('pinata-icon');
