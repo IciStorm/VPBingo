@@ -204,7 +204,7 @@
 
         let usedCombinations = new Set();
 
-        function getEnabledAwards() {
+        function getEnabledAwards() { // Controls which awards appear based on checkbox settings
             const enabledAwards = new Set(awardTypeIcons);
             if (document.getElementById('disableVisitRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[1]);
@@ -253,8 +253,7 @@
                 attempts++;
             }
         
-            // No valid combo can be found, display an error
-            return { pinata: awardTypeIcons[0], award: awardTypeIcons[0] };
+            return { pinata: awardTypeIcons[0], award: awardTypeIcons[0] }; // No valid combination can be found, display an error
         }
 
         function toggleOverlayImage(cell) {
@@ -292,7 +291,7 @@
             const enabledAwards = getEnabledAwards();
             const forceUnique = document.getElementById('forceUnique').checked;
 
-            const iconPool = // Probably want this to be a set so options are easily added together
+            const iconPool = // Handles what icons are active
                 (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
                 enableTipSet ? [...tipIcons, ...pinataIcons] : 
                 enablePlantSet ? [...plantIcons, ...pinataIcons] :  
@@ -325,9 +324,6 @@
                             else attempts++;
                         }
                     }
-                    //else {
-                    //    {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
-                    //}
                         
                     const mainIcon = document.createElement('img');
                     mainIcon.src = pinata;
