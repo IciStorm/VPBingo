@@ -227,28 +227,6 @@
             return x - Math.floor(x);
         }
 
-        function getRandomIcon(iconArray, seed, index) {
-            let attempts = 0;
-
-            while (attempts < iconArray.length) {
-                const randomIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
-                const pinataIcon = iconArray[randomIndex];
-
-                // Check if there are valid combinations left for this tile
-                const enabledAwards = getEnabledAwards();
-                const validIcons = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award));
-
-                if (validIcons && validIcons.length > 0) {
-                    return pinataIcon;
-                }
-
-                attempts++;
-            }
-
-            // If error, return 'X'
-            return awardTypeIcons[0];
-        }
-
         function getValidCombo(iconArray, enabledAwards, seed, index) {
             let attempts = 0;
             while (attempts < iconArray.length) {
@@ -271,24 +249,6 @@
         
             // No valid combo can be found, display an error
             return { pinata: awardTypeIcons[0], award: awardTypeIcons[0] };
-        }
-        
-        function getValidCombo(pinataIcon, seed, index) {
-            const validIcons = validCombos[pinataIcon] || getEnabledAwards();
-
-            let combo = pinataIcon + '-' + validIcons[randomIndex];
-
-            while (attempts < validIcons.length) {
-                const randomIndex = Math.floor(seededRandom(seed + index + attempts) * validIcons.length);
-                
-                if (!usedCombinations.has(combo)) {
-                    usedCombinations.add(combo);
-                    return validIcons[randomIndex];
-                }
-            }
-
-            // If error, return 'X'
-            return awardTypeIcons[0];
         }
 
         function toggleOverlayImage(cell) {
