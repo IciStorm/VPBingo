@@ -133,6 +133,11 @@
         </span>
 
         <span class="checkbox-container">
+            <label for="enableTinkerables">Enable Tinkerables:</label>
+            <input type="checkbox" id="enableTinkerables" onchange="createTable()">
+        </span>
+
+        <span class="checkbox-container">
             <label for="">(WIP) Enable Additonal Missions:</label>
             <input type="checkbox" id="" onchange="createTable()">
         </span>
@@ -169,6 +174,7 @@
     <script src="validCombos.js"></script>
     <script src="pinataIcons.js"></script>
     <script src="plantIcons.js"></script>
+    <script src="tinkerIcons.js"></script>
 
     <script>
 
@@ -196,7 +202,9 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_MasterRomanceRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true',
-            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
+            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true',
+            'TempForFertilizeAward',
+            'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Charactor_Bart.PNG?raw=true'
         ];
 
         const checkmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_Check.PNG?raw=true';
@@ -284,6 +292,7 @@
             const size = parseInt(document.getElementById('tableSize').value);
             const enableTipSet = document.getElementById('enableTipSet').checked;
             const enablePlantSet = document.getElementById('enablePlantSet').checked;
+            const enableTinkerables = document.getElementById('enableTinkerables').checked;
             const tableContainer = document.getElementById('tableContainer');
             tableContainer.innerHTML = ''; // Clear the previous table
 
@@ -291,10 +300,13 @@
             const enabledAwards = getEnabledAwards();
             const forceUnique = document.getElementById('forceUnique').checked;
 
-            const iconPool = // Handles what icons are active
+            const iconPool = // This should really be made into a set, probably
+                (enablePlantSet && enableTinkerables && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...tinkerIcons, ...pinataIcons] :
                 (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
+                (enablePlantSet && enableTinkerables) ? [...tinkerIcons, ...plantIcons, ...pinataIcons] : 
                 enableTipSet ? [...tipIcons, ...pinataIcons] : 
                 enablePlantSet ? [...plantIcons, ...pinataIcons] :  
+                enableTinkerables ? [...tinkerIcons, ...pinataIcons] : 
                 pinataIcons;
 
             let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
