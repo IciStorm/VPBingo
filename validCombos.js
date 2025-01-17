@@ -40,6 +40,10 @@ const plantSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
 ];
 
+const tinkerSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Charactor_Bart.PNG?raw=true'
+];
+
 const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Arocknid.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Badgesicie.PNG?raw=true' : standardSet,
@@ -147,5 +151,24 @@ const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Turnip.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/VenusPinataTrap.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/WaterLily.PNG?raw=true' : plantSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true' : plantSet
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true' : plantSet,
+
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Acorn.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Apple.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Banana.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Blackberry.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Bone.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Carrot.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Chili.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Corn.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Fir.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Gooseberry.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Hazelnut.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Honey.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Milk.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Monkeynut.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Nightshade.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Pumpkin.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Turnip.PNG?raw=true' : tinkerSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Tinkerables/Wool.PNG?raw=true' : tinkerSet
 };
