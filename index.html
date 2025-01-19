@@ -325,15 +325,23 @@
                     if (forceUnique) {
                         let attempts = 0;
                         while (attempts < 10000) {
-                            const randomIndex = Math.floor(seededRandom(seed + index) * unusedPinatas.length);
+                            const randomIndex = Math.floor(seededRandom(seed + index + attempts) * unusedPinatas.length);
                             pinata = unusedPinatas[randomIndex];
-                            unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
 
                             // Get a random valid award for the selected piñata
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
-                            if (validAwards.length > 0)
+                            if (validAwards.length > 0) {
+                                const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts + 1) * validAwards.length);
+                                award = validAwards[randomAwardIndex];
+                                unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
                                 break;
+                            }
                             else attempts++;
+                        }
+
+                        if (attempts == 10000) {
+                            pinata = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true';
+                            award = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true';
                         }
                     }
                         
