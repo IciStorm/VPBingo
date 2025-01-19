@@ -243,8 +243,11 @@
 
         function getValidCombo(iconArray, enabledAwards, seed, index) {
             let attempts = 0;
+            const row = Math.floor(index / tableWidth);
+            const col = index % tableWidth;
+            
             while (attempts < 10000) {
-                const randomPinataIndex = Math.floor(seededRandom(seed + index + attempts) * iconArray.length);
+                const randomPinataIndex = Math.floor(seededRandom(seed + index + attempts + row * 31 + col * 89) * iconArray.length);
                 const pinataIcon = iconArray[randomPinataIndex];
         
                 const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || [];
@@ -325,13 +328,13 @@
                     if (forceUnique) {
                         let attempts = 0;
                         while (attempts < 10000) {
-                            const randomIndex = Math.floor(seededRandom(seed + index + attempts) * unusedPinatas.length);
+                            const randomIndex = Math.floor(seededRandom(seed + index + attempts * 31) * unusedPinatas.length);
                             pinata = unusedPinatas[randomIndex];
 
                             // Get a random valid award for the selected piñata
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
-                                const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts + 1) * validAwards.length);
+                                const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts * 31) * validAwards.length);
                                 award = validAwards[randomAwardIndex];
                                 unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
                                 break;
