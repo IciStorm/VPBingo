@@ -302,7 +302,8 @@
             
             while (attempts < 10000) {
                 const randomPinataIndex = Math.floor(seededRandom(seed + index + attempts * 31) * iconArray.length);
-                const pinataIcon = iconArray[randomPinataIndex];
+                const pinataObj = iconArray[randomPinataIndex];
+                const pinataIcon = pinataObj.url;
         
                 const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || [];
         
@@ -364,8 +365,6 @@
             const enabledAwards = getEnabledAwards();
             const forceUnique = document.getElementById('forceUnique').checked;
 
-            const difficulty = parseInt(document.getElementById('difficulty').value, 10);
-
             let iconPool; // Gets the available icons with the given settings
             if (isSecret) {
                 iconPool = secretSeeds[secret].iconSet;
@@ -398,7 +397,8 @@
                         let attempts = 0;
                         while (attempts < 10000) {
                             const randomIndex = Math.floor(seededRandom(seed + index + attempts) * unusedPinatas.length);
-                            pinata = unusedPinatas[randomIndex];
+                            const pinataURL = unusedPinatas[randomIndex];
+                            pinata = pinataURL.url;
 
                             // Get a random valid award for the selected piñata
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
