@@ -219,7 +219,7 @@
     </div>
 
     <script src="validCombos.js"></script>
-    <script scr="secretSeeds.js"></script>
+    <script src="secretSeeds.js"></script>
     <script src="pinataIcons.js"></script>
     <script src="plantIcons.js"></script>
     <script src="tinkerIcons.js"></script>
@@ -346,11 +346,13 @@
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
             seed = checkSeed(seed);
+            let isSecret = typeof seed === 'string' && secretSeeds.hasOwnProperty(seed);
+            
             if (seed === '') {
                 seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
                 document.getElementById('seedInput').value = seed; // Display the current seed
             }
-            seed = parseInt(seed);
+            let seed = isSecret ? seed : parseInt(seed)
 
             const size = parseInt(document.getElementById('tableSize').value);
             const enableTipSet = document.getElementById('enableTipSet').checked;
@@ -363,16 +365,21 @@
             const enabledAwards = getEnabledAwards();
             const forceUnique = document.getElementById('forceUnique').checked;
 
-            const iconPool = // This should really be made into a set, probably
-                (enablePlantSet && enableTinkerables && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...tinkerIcons, ...tipTinkerIcons, ...pinataIcons] :
-                (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
-                (enableTinkerables && enableTipSet) ? [...tipIcons, ...tinkerIcons, ...tipTinkerIcons, ...pinataIcons] :
-                (enablePlantSet && enableTinkerables) ? [...tinkerIcons, ...plantIcons, ...pinataIcons] : 
-                enableTipSet ? [...tipIcons, ...pinataIcons] : 
-                enablePlantSet ? [...plantIcons, ...pinataIcons] :  
-                enableTinkerables ? [...tinkerIcons, ...pinataIcons] : 
-                pinataIcons;
-
+            let iconPool;
+            if (isSecret) {
+                iconPool = secretSeeds[seed].iconSet;
+            } else {
+                iconPool =
+                    (enablePlantSet && enableTinkerables && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...tinkerIcons, ...tipTinkerIcons, ...pinataIcons] :
+                    (enablePlantSet && enableTipSet) ? [...tipIcons, ...plantIcons, ...tipPlantIcons, ...pinataIcons] :
+                    (enableTinkerables && enableTipSet) ? [...tipIcons, ...tinkerIcons, ...tipTinkerIcons, ...pinataIcons] :
+                    (enablePlantSet && enableTinkerables) ? [...tinkerIcons, ...plantIcons, ...pinataIcons] : 
+                    enableTipSet ? [...tipIcons, ...pinataIcons] : 
+                    enablePlantSet ? [...plantIcons, ...pinataIcons] :  
+                    enableTinkerables ? [...tinkerIcons, ...pinataIcons] : 
+                    pinataIcons;
+            }
+            
             let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
             let index = 0; // To vary the seed for each cell
             
