@@ -352,7 +352,7 @@
                 seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
                 document.getElementById('seedInput').value = seed; // Display the current seed
             }
-            let seed = isSecret ? seed : parseInt(seed)
+            seed = isSecret ? seed : parseInt(seed)
 
             const size = parseInt(document.getElementById('tableSize').value);
             const enableTipSet = document.getElementById('enableTipSet').checked;
