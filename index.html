@@ -219,6 +219,7 @@
     </div>
 
     <script src="validCombos.js"></script>
+    <script scr="secretSeeds.js"></script>
     <script src="pinataIcons.js"></script>
     <script src="plantIcons.js"></script>
     <script src="tinkerIcons.js"></script>
@@ -295,7 +296,7 @@
             
         function checkSeed(seed) {
             const strSeed = seed.trim().toLowerCase();
-            if (typeof seed === 'string' && 1 === 2) { // Prevents if from triggering until I add the special seeds
+            if (typeof seed === 'string' && secretSeeds.hasOwnProperty(strSeed)) {
                 return strSeed;
             }
             return seed.replace(/\D/g, "");
@@ -344,6 +345,7 @@
         function createTable() {
             usedCombinations.clear();
             let seed = document.getElementById('seedInput').value;
+            seed = checkSeed(seed);
             if (seed === '') {
                 seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
                 document.getElementById('seedInput').value = seed; // Display the current seed
