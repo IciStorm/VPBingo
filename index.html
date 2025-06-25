@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Piñata Bingo</title>
-    <link rel="icon" type="image/x-icon" href="/images/site_icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         body {
             display: flex;
@@ -144,7 +144,7 @@
             <input type="text" id="seedInput" placeholder="Leave Empty for Random Seed">
     
             <button onclick="createTable()">Generate Using Seed</button>
-            <button onclick="generateRandomSeed()">(TESTING) Generate With Random Seed</button>
+            <button onclick="generateRandomSeed()">Generate With Random Seed</button>
             
             <label for="tableSize">Table Size</label>
             <select id="tableSize" onchange="createTable()">
@@ -169,10 +169,10 @@
                 <input type="checkbox" id="forceUnique" onchange="createTable()">
             </div>
     
-            <div class="checkbox-position">
-                <label for="enableTipSet">(WIP) Enable Trouble in Paradise Content:</label>
-                <input type="checkbox" id="enableTipSet" onchange="createTable()">
-            </div>
+            //<div class="checkbox-position">
+            //    <label for="enableTipSet">(WIP) Enable Trouble in Paradise Content:</label>
+            //    <input type="checkbox" id="enableTipSet" onchange="createTable()">
+            //</div>
     
             <div class="checkbox-position">
                 <label for="enablePlantSet">Enable Plants:</label>
@@ -182,11 +182,6 @@
             <div class="checkbox-position">
                 <label for="enableTinkerables">Enable Tinkerables:</label>
                 <input type="checkbox" id="enableTinkerables" onchange="createTable()">
-            </div>
-    
-            <div class="checkbox-position">
-                <label for="">(WIP) Enable Additonal Missions:</label>
-                <input type="checkbox" id="" onchange="createTable()">
             </div>
     
             <hr>
