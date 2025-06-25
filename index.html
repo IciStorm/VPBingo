@@ -20,8 +20,8 @@
             right: 0;
             width: 400px;
             height: 100vh;
-            background-color: #FFFFFF;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -127,6 +127,9 @@
         <label for="seedInput">Enter Custom Seed:</label>
         <input type="text" id="seedInput" placeholder="Leave empty for random seed">
 
+        <button onclick="createTable()">Generate Using Seed</button>
+        <button onclick="createTable()">(WIP) Generate With Random Seed</button>
+        
         <label for="tableSize">Table Size:</label>
         <select id="tableSize" onchange="createTable()">
             <option value="3">3x3</option>
@@ -142,8 +145,6 @@
             <option value="2">Medium (Levels 1-6)</option>
             <option value="3">Hard (Levels 1-10)</option>
         </select>
-
-        <button onclick="createTable()">Generate New Table</button>
 
         <hr>
 
