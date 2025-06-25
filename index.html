@@ -347,13 +347,13 @@
             let seed = document.getElementById('seedInput').value;
             seed = checkSeed(seed);
             let isSecret = typeof seed === 'string' && secretSeeds.hasOwnProperty(seed);
+            let secret = seed;
             
             if (seed === '') {
                 seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
                 document.getElementById('seedInput').value = seed; // Display the current seed
             }
             if (isSecret) {
-                let secret = seed;
                 seed = Math.floor(Math.random() * 1000000000);
             }
             seed = parseInt(seed)
