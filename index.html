@@ -15,11 +15,25 @@
         }
 
         #settingsContainer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: #FFFFFF;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            margin-left: 20px;
-            margin-top: 30px;
-            text-align: right;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .checkbox-position {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
         }
 
         label, input, select, button {
@@ -124,10 +138,10 @@
 
         <hr>
 
-        <span class="checkbox-container">
+        <div class="checkbox-position">
             <label for="forceUnique">Force Unique Piñatas:</label>
             <input type="checkbox" id="forceUnique" onchange="createTable()">
-        </span>
+        </div>
 
         <span class="checkbox-container">
             <label for="enableTipSet">(WIP) Enable Trouble in Paradise Content:</label>
