@@ -43,6 +43,10 @@
             text-align: center;
         }
 
+        .dropdown-text {
+            text-align: center;
+        }
+
         .checkbox-position {
             display: flex;
             justify-content: space-between;
@@ -138,14 +142,18 @@
         <div id="settingsContainer">
     
             <div class="bingo-title">Viva Piñata Bingo</div>
-    
-            <label for="seedInput">Table Seed</label>
+
+            <div class="dropdown-text">
+                <label for="seedInput">Table Seed</label>
+            </div>
             <input type="text" id="seedInput" placeholder="Leave Empty for Random Seed">
     
             <button onclick="createTable()">Generate Using Seed</button>
             <button onclick="generateRandomSeed()">Generate With Random Seed</button>
-            
-            <label for="tableSize">Table Size</label>
+
+            <div class="dropdown-text">
+                <label for="tableSize">Table Size</label>
+            </div>
             <select id="tableSize" onchange="createTable()">
                 <option value="3">3x3</option>
                 <option value="4">4x4</option>
@@ -153,8 +161,10 @@
                 <option value="6">6x6</option>
                 <option value="7">7x7</option>
             </select>
-    
-            <label for="difficulty">(TESTING) Bingo Difficulty</label>
+
+            <div class="dropdown-text">
+                <label for="difficulty">(TESTING) Bingo Difficulty</label>
+            </div>
             <select id="difficulty" onchange="createTable()">
                 <option value="1" selected>Full Game (Levels 1-10)</option>
                 <option value="2">Mid Game (Levels 1-6)</option>
