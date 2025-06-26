@@ -397,7 +397,7 @@
                     (enablePlantSet && enableTinkerables) ? [...filteredPinatas, ...filteredPlants, ...filteredTinkerables] :
                     enablePlantSet ? [...filteredPinatas, ...filteredPlants] :  
                     enableTinkerables ? [...filteredPinatas, ...filteredTinkerables] : 
-                    ...filteredPinatas;
+                    filteredPinatas;
             }
             
             let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
