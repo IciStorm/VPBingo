@@ -279,7 +279,8 @@
             return Array.from(enabledAwards);
         }
         
-        function getTasksByDifficulty(allPinatas, difficulty) {
+        function getTasksByDifficulty(allTasks, difficulty) {
+            let tasklist = allTasks;
             switch (difficulty) {
                 case 1:
                     return tasklist.filter(t => t.level <= 10); // Task levels 1-10 are used
