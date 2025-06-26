@@ -166,7 +166,7 @@
             </select>
 
             <div class="dropdown-text">
-                <label for="difficulty">(TESTING) Bingo Difficulty</label>
+                <label for="difficulty">Bingo Difficulty</label>
             </div>
             <select id="difficulty" onchange="createTable()">
                 <option value="1" selected>Full Game (Levels 1-10)</option>
@@ -260,6 +260,7 @@
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true',
             'TempForFertilizeAward',
+            'TempForPurchaseChallenge',
             'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Charactor_Bart.PNG?raw=true'
         ];
 
@@ -289,6 +290,19 @@
                 enabledAwards.delete(awardTypeIcons[8]);
             }
             return Array.from(enabledAwards);
+        }
+        
+        function getPinatasByDifficulty(allPinatas, difficulty) {
+            switch (difficulty) {
+                case 1:
+                    return allPinatas.filter(p => p.level <= 10); // Task levels 1-10 are used
+                case 2:
+                    return allPinatas.filter(p => p.level <= 6);  // Task levels 1-6 are used
+                case 3:
+                    return allPinatas.filter(p => p.level <= 3);  // Task levels 1-3 are used
+                default:
+                    return allPinatas;
+            }
         }
 
         // RNG Generator so things get random
@@ -378,6 +392,11 @@
             const enabledAwards = getEnabledAwards();
             const forceUnique = document.getElementById('forceUnique').checked;
 
+            if (!isSecret) {
+                const difficulty = parseInt(documennt.getElementById('difficulty').value, 10);
+                let filteredPinatas = getPinatasByDifficulty(pinataIcons, difficulty);
+            }
+            
             let iconPool; // Gets the available icons with the given settings
             if (isSecret) {
                 iconPool = secretSeeds[secret].iconSet;
