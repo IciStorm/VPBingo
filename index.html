@@ -119,6 +119,15 @@
             right: -15px;
         }
 
+        .award-type2 {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            position: absolute;
+            bottom: -15px;
+            right: -10px;
+        }
+
         #tableContainer {
             position: fixed;
             top: 0;
@@ -447,7 +456,9 @@
 
                     const awardIcon = document.createElement('img');
                     awardIcon.src = award;
-                    awardIcon.classList.add('award-type');
+                    if (awardIcon.scr === awardTypeIcons[1]) {
+                        awardIcon.classList.add('award-type2');
+                    } else awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
 
                     cell.appendChild(iconContainer);
