@@ -39,7 +39,7 @@ const plantSet = [
 ];
 
 const tinkerSet = [
-    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Charactor_Bart.PNG?raw=true'
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Character_Bart.PNG?raw=true'
 ];
 
 const validCombos = {
