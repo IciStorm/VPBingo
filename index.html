@@ -456,7 +456,7 @@
 
                     const awardIcon = document.createElement('img');
                     awardIcon.src = award;
-                    if (awardIcon.src === awardTypeIcons[1]) {
+                    if (awardIcon.src.endsWith('UI_Icon_Attract.PNG?raw=true')) {
                         awardIcon.classList.add('award-type2');
                     } else awardIcon.classList.add('award-type');
                     iconContainer.appendChild(awardIcon);
