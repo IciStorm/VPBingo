@@ -1,4 +1,5 @@
 const standardSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Attract.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon1.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VariantRibbon2.PNG?raw=true',
@@ -9,6 +10,7 @@ const standardSet = [
 ];
 
 const sourSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Attract.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true'
 ];
 
@@ -28,6 +30,7 @@ const scotchSet = [
 ];
 
 const whiteScotchSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Attract.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_RomanceRibbon.PNG?raw=true',
@@ -35,6 +38,7 @@ const whiteScotchSet = [
 ];
 
 const plantSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Packet_Fertilizer_Magic.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
 ];
 
