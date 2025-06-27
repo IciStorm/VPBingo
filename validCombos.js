@@ -73,6 +73,7 @@ const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_Purple.PNG?raw=true' : scotchSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_Red.PNG?raw=true' : scotchSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_White.PNG?raw=true' : whiteScotchSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_Yellow.PNG?raw=true' : scotchSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Fourheads.PNG?raw=true' : petSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Fudgehog.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Galagoogoo.PNG?raw=true' : standardSet,
