@@ -209,7 +209,12 @@
             </div>
     
             <hr>
-    
+
+            <div class="checkbox-position">
+                <label for="disableAppearTask">Disable Appear Task:</label>
+                <input type="checkbox" id="disableAppearTask" onchange="createTable()">
+            </div>
+            
             <div class="checkbox-position">
                 <label for="disableVisitRibbon">Disable Visit Ribbon:</label>
                 <input type="checkbox" id="disableVisitRibbon" onchange="createTable()">
@@ -269,7 +274,9 @@
 
         function getEnabledAwards() { // Controls which awards appear based on checkbox settings
             const enabledAwards = new Set(awardTypeIcons);
-            // Disable Appear Ribbon
+            if (document.getElementById('disableAppearTask').checked) {
+                enabledAwards.delete(awardTypeIcons[1]);
+            }
             if (document.getElementById('disableVisitRibbon').checked) {
                 enabledAwards.delete(awardTypeIcons[2]);
             }
