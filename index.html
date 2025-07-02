@@ -211,13 +211,6 @@
             <hr>
 
             <div class="checkbox-position">
-                <label for="enableDragon">Enable Dragonache:</label>
-                <input type="checkbox" id="enableDragon" onchange="createTable()">
-            </div>
-            
-            <hr>
-
-            <div class="checkbox-position">
                 <label for="disableAppearTask">Disable Appear Task:</label>
                 <input type="checkbox" id="disableAppearTask" onchange="createTable()">
             </div>
@@ -398,7 +391,6 @@
             //const enableTipSet = document.getElementById('enableTipSet').checked; // Checks if TiP is enabled
             const enablePlantSet = document.getElementById('enablePlantSet').checked; // Checks if plants are enabled
             const enableTinkerables = document.getElementById('enableTinkerables').checked; // Checks if tinkerables are enabled
-            const enableDragon = document.getElementById('enableDragon').checked; // Checks if Dragonache is enabled
             const forceUnique = document.getElementById('forceUnique').checked; // Checks if all pinatas need to be unique
             const tableContainer = document.getElementById('tableContainer'); // Gets the table
             tableContainer.innerHTML = ''; // Clear the previous table
@@ -425,10 +417,6 @@
                     enablePlantSet ? [...filteredPinatas, ...filteredPlants] :  
                     enableTinkerables ? [...filteredPinatas, ...filteredTinkerables] : 
                     filteredPinatas;
-            }
-
-            if (enableDragon && difficulty === 3) {
-                iconPool.push(pinataIcons.find(p => p.name === 'Dragonache'));
             }
             
             let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
