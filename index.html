@@ -179,9 +179,9 @@
                 <label for="difficulty">Bingo Difficulty</label>
             </div>
             <select id="difficulty" onchange="createTable()">
-                <option value="1" selected>Full Game (Levels 1-10)</option>
-                <option value="2">Mid Game (Levels 1-6)</option>
-                <option value="3">Early Game (Levels 1-3)</option>
+                <option value="1" selected>Full Game (Levels 1-11)</option>
+                <option value="2">Mid Game (Levels 1-7)</option>
+                <option value="3">Early Game (Levels 1-4)</option>
             </select>
     
             <hr>
@@ -301,11 +301,11 @@
             let tasklist = allTasks;
             switch (difficulty) {
                 case 1:
-                    return tasklist.filter(t => t.level <= 10); // Task levels 1-10 are used
+                    return tasklist.filter(t => t.level <= 11); // Task levels 1-10 are used
                 case 2:
-                    return tasklist.filter(t => t.level <= 6);  // Task levels 1-6 are used
+                    return tasklist.filter(t => t.level <= 7);  // Task levels 1-6 are used
                 case 3:
-                    return tasklist.filter(t => t.level <= 3);  // Task levels 1-3 are used
+                    return tasklist.filter(t => t.level <= 4);  // Task levels 1-3 are used
                 default:
                     return tasklist;
             }
