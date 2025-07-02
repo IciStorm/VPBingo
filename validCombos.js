@@ -9,6 +9,10 @@ const standardSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_MasterRomanceRibbon.PNG?raw=true'
 ];
 
+const mythicalSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ResideRibbon.PNG?raw=true'
+]
+
 const sourSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Attract.PNG?raw=true',
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_VisitRibbon.PNG?raw=true'
@@ -62,6 +66,7 @@ const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Cocoadile.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Crowla.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Doenut.PNG?raw=true' : standardSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Dragonache.PNG?raw=true' : mythicalSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Dragumfly.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Eaglair.PNG?raw=true' : standardSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Elephanilla.PNG?raw=true' : standardSet,
