@@ -14,6 +14,7 @@ const pinataIcons = [
   { name: 'Cocoadile', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Cocoadile.PNG?raw=true', level: 6 },
   { name: 'Crowla', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Crowla.PNG?raw=true', level: 5 },
   { name: 'Doenut', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Doenut.PNG?raw=true', level: 6 },
+  { name: 'Dragonache', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Dragonache.PNG?raw=true', level: 11 },
   { name: 'Dragumfly', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Dragumfly.PNG?raw=true', level: 7 },
   { name: 'Eaglair', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Eaglair.PNG?raw=true', level: 9 },
   { name: 'Elephanilla', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Elephanilla.PNG?raw=true', level: 9 },
