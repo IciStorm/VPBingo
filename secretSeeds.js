@@ -1,5 +1,5 @@
 const secretSeeds = {
-  "flutterscotch": {
+  "rainbow": {
     iconSet: [
       { name: 'Flutterscotch_Black', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_Black.PNG?raw=true', level: 3 },
       { name: 'Flutterscotch_Blue', url: 'https://github.com/IciStorm/VPBingo/blob/main/images/UI_Icon_Pinata_Flutterscotch_Blue.PNG?raw=true', level: 3 },
