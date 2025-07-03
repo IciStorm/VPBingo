@@ -218,7 +218,7 @@
             <hr>
 
             <div class="checkbox-position">
-                <label for="disableAppearTask">Disable Appear Task:</label>
+                <label for="disableAppearTask">Disable Appear Tasks:</label>
                 <input type="checkbox" id="disableAppearTask" onchange="createTable()">
             </div>
             
@@ -263,45 +263,48 @@
     <script src="tinkerIcons.js"></script>
 
     <script>
+        // Overlay icons for marking a task on the bingo
         const checkmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_Check.PNG?raw=true';
         const crossmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_X.PNG?raw=true';
 
-        let usedCombinations = new Set();
+        let usedCombinations = new Set(); // Stores created tasks to prevent duplicates from showing up
 
-        function getEnabledAwards() { // Controls which awards appear based on checkbox settings
+        // Controls which awards appear based on checkbox settings
+        function getEnabledAwards() {
             const enabledAwards = new Set(awardTypeIcons);
-            if (document.getElementById('disableAppearTask').checked) {
+            if (document.getElementById('disableAppearTask').checked) { // No appear tasks
                 enabledAwards.delete(awardTypeIcons[1]);
             }
-            if (document.getElementById('disableVisitRibbon').checked) {
+            if (document.getElementById('disableVisitRibbon').checked) { // No visit tasks
                 enabledAwards.delete(awardTypeIcons[2]);
             }
-            if (document.getElementById('disableResidentRibbon').checked) {
+            if (document.getElementById('disableResidentRibbon').checked) { // No residency tasks
                 enabledAwards.delete(awardTypeIcons[3]);
             }
-            if (document.getElementById('disableVariantRibbon').checked) {
+            if (document.getElementById('disableVariantRibbon').checked) { // No variant tasks
                 enabledAwards.delete(awardTypeIcons[4]);
                 enabledAwards.delete(awardTypeIcons[5]);
                 enabledAwards.delete(awardTypeIcons[6]);
             }
-            if (document.getElementById('disableRomanceRibbon').checked) {
+            if (document.getElementById('disableRomanceRibbon').checked) { // No romance tasks
                 enabledAwards.delete(awardTypeIcons[7]);
             }
-            if (document.getElementById('disableMasterRomanceRibbon').checked) {
+            if (document.getElementById('disableMasterRomanceRibbon').checked) { // No master romance tasks
                 enabledAwards.delete(awardTypeIcons[8]);
             }
-            return Array.from(enabledAwards);
+            return Array.from(enabledAwards); // Return reduced array of available awards
         }
-        
+
+        // Controls task list based on difficulty setting
         function getTasksByDifficulty(allTasks, difficulty) {
             let tasklist = allTasks;
             switch (difficulty) {
                 case 1:
-                    return tasklist.filter(t => t.level <= 11); // Task levels 1-10 are used
+                    return tasklist.filter(t => t.level <= 11); // Task levels 1-11 are used
                 case 2:
-                    return tasklist.filter(t => t.level <= 7);  // Task levels 1-6 are used
+                    return tasklist.filter(t => t.level <= 7);  // Task levels 1-7 are used
                 case 3:
-                    return tasklist.filter(t => t.level <= 4);  // Task levels 1-3 are used
+                    return tasklist.filter(t => t.level <= 4);  // Task levels 1-4 are used
                 default:
                     return tasklist;
             }
@@ -313,11 +316,13 @@
             return x - Math.floor(x);
         }
 
+        // If "Generate with Random Seed" is clicked, gets a new seed
         function generateRandomSeed() {
             document.getElementById('seedInput').value = Math.floor(Math.random() * 1000000000);
             createTable();
         }
-            
+
+        // Cleans seed of non-numeric characters and sets to lowercase. Retur
         function checkSeed(seed) {
             const strSeed = seed.trim().toLowerCase();
             if (typeof seed === 'string' && secretSeeds.hasOwnProperty(strSeed)) {
@@ -366,12 +371,13 @@
                 cell.appendChild(overlayImg);
             }
         }
-        
+
+        // Builds the table
         function createTable() {
-            usedCombinations.clear();
-            let seed = document.getElementById('seedInput').value;
-            seed = checkSeed(seed);
-            let isSecret = typeof seed === 'string' && secretSeeds.hasOwnProperty(seed);
+            usedCombinations.clear(); // Clears the set to allow repeated use
+            let seed = document.getElementById('seedInput').value; // Gets seed, if entered
+            seed = checkSeed(seed); // Strips seed of non-numeric characters and checks if it is a secret seed
+            let isSecret = typeof seed === 'string' && secretSeeds.hasOwnProperty(seed); // If seed returns as a string, then it is a secret seed
             let secret = seed;
             
             if (seed === '') {
@@ -379,9 +385,9 @@
                 document.getElementById('seedInput').value = seed; // Display the current seed
             }
             if (isSecret) {
-                seed = Math.floor(Math.random() * 1000000000);
+                seed = Math.floor(Math.random() * 100); // Reduced seed combinations to allow easier syncing between users. This should be changed in the future but I don't know how just yet
             }
-            seed = parseInt(seed)
+            seed = parseInt(seed, 10);
 
             const size = parseInt(document.getElementById('tableSize').value, 10); // Checks size of table
             //const enableTipSet = document.getElementById('enableTipSet').checked; // Checks if TiP is enabled
@@ -397,7 +403,7 @@
             let filteredPlants = plantIcons;
             let filteredTinkerables = tinkerIcons;
 
-            if (!isSecret) {
+            if (!isSecret) { // If not using secretseed, filter tasks by difficulty setting
                 const difficulty = parseInt(document.getElementById('difficulty').value, 10);
                 filteredPinatas = getTasksByDifficulty(pinataIcons, difficulty);
                 filteredPlants = getTasksByDifficulty(plantIcons, difficulty);
