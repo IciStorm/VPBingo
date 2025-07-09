@@ -12,5 +12,6 @@ const awardTypeIcons = [
   'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Packet_Fertilizer_Magic.PNG?raw=true',
   'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Character_Bart.PNG?raw=true',
   'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Check.PNG?raw=true',
-  'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Coin.PNG?raw=true'
+  'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Coin.PNG?raw=true',
+  'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorFallback.PNG?raw=true'
 ];
