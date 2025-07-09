@@ -353,7 +353,7 @@
                 attempts++;
             }
         
-            return { pinata: awardTypeIcons[0], award: awardTypeIcons[0] }; // No valid combination can be found, display an error
+            return { pinata: awardTypeIcons[14], award: awardTypeIcons[0] }; // No valid combination can be found, display an error
         }
 
         function toggleOverlayImage(cell) {
@@ -453,7 +453,7 @@
                         }
 
                         if (attempts == 10000) {
-                            pinata = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true';
+                            pinata = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorFallback.PNG?raw=true';
                             award = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true';
                         }
                     }
