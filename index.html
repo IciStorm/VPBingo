@@ -358,10 +358,11 @@
         
                 if (availableAwards.length > 0) {
                     const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts + 1) * availableAwards.length);
-                    const selectedAward = availableAwards[randomAwardIndex];
-        
-                    usedCombinations.add(`${pinataIcon}-${selectedAward}`);
-                    return { pinata: pinataIcon, award: selectedAward };
+                    if (!checkAwardByDifficulty(pinataIcon, availableAwards[randomAwardIndex], parseInt(document.getElementById('difficulty').value, 10))) {
+                        const selectedAward = availableAwards[randomAwardIndex];
+                        usedCombinations.add(`${pinataIcon}-${selectedAward}`);
+                        return { pinata: pinataIcon, award: selectedAward };
+                    }
                 }
                 attempts++;
             }
