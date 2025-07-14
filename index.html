@@ -390,19 +390,22 @@
         function createTable() {
             usedCombinations.clear();
         
-            const settings = getBoardSettings();
+            const settings = getBoardSettings(); // Gets bingo settings
             const enabledAwards = getEnabledAwards();
-        
+
+            // Filters icon sets based on selected difficulty and level
             let filteredPinatas = pinataIcons;
             let filteredPlants = plantIcons;
             let filteredTinkerables = tinkerIcons;
-        
+
+            // Only use settings if not in a secret seed, to allow secret seeds specific combinations
             if (!settings.isSecret) {
                 filteredPinatas = getTasksByDifficulty(pinataIcons, settings.difficulty);
                 filteredPlants = getTasksByDifficulty(plantIcons, settings.difficulty);
                 filteredTinkerables = getTasksByDifficulty(tinkerIcons, settings.difficulty);
             }
-        
+
+            // Build valid iconpool
             let iconPool = settings.isSecret
                 ? secretSeeds[settings.rawSeed].iconSet
                 : (settings.enablePlants && settings.enableTinkerables)
@@ -412,13 +415,18 @@
                         : settings.enableTinkerables
                             ? [...filteredPinatas, ...filteredTinkerables]
                             : filteredPinatas;
-        
+
+            // Generate tasks for the board
             const tasks = generateTasks(settings, enabledAwards, iconPool);
+            
+            // Based on how many tasks were produced, get a new size for the board
             const finalSize = tasks.length < settings.size * settings.size
                 ? getMaxSquareSize(tasks.length)
                 : settings.size;
         
             renderBoard(tasks.slice(0, finalSize * finalSize), finalSize);
+
+            document.getElementById('tableSize').value = finalSize; // Update dropdown element to show new size
         }
                         
 
