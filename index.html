@@ -354,15 +354,14 @@
         
                 const validAwards = validCombos[pinataIcon]?.filter(award => enabledAwards.includes(award)) || [];
         
-                const availableAwards = validAwards.filter(award => !usedCombinations.has(`${pinataIcon}-${award}`));
+                const availableAwards = validAwards.filter(award => !usedCombinations.has(`${pinataIcon}-${award}`) && 
+                    !checkAwardByDifficulty(pinataIcon, award, parseInt(document.getElementById('difficulty').value, 10)));
         
                 if (availableAwards.length > 0) {
                     const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts + 1) * availableAwards.length);
-                    if (!checkAwardByDifficulty(pinataIcon, availableAwards[randomAwardIndex], parseInt(document.getElementById('difficulty').value, 10))) {
-                        const selectedAward = availableAwards[randomAwardIndex];
-                        usedCombinations.add(`${pinataIcon}-${selectedAward}`);
-                        return { pinata: pinataIcon, award: selectedAward };
-                    }
+                    const selectedAward = availableAwards[randomAwardIndex];
+                    usedCombinations.add(`${pinataIcon}-${selectedAward}`);
+                    return { pinata: pinataIcon, award: selectedAward };
                 }
                 attempts++;
             }
