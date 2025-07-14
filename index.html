@@ -251,7 +251,7 @@
 
         <div id="versionAndCredits">
             <div>IciStorm</div>
-            <div>Version 1.0.0</div>
+            <div>Version 1.1.0</div>
         </div>
     </div>
 
@@ -446,7 +446,7 @@
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                if (validAwards[randomAwardIndex] !== getTasksByDifficulty(awardTypes, difficulty) {
+                                if (validAwards[randomAwardIndex] !== getTasksByDifficulty(awardTypes, difficulty)) {
                                     break;
                                 }
                                 award = validAwards[randomAwardIndex];
