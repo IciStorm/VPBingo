@@ -311,10 +311,16 @@
         }
 
         function checkAwardByDifficulty(pinataURL, award, difficulty) { // Should make this more readable in the future by giving names to awardTypeIcons
+            const pinata = pinataIcons.find(p => p.url === pinataURL);
+            if (!pinata) return false; // Ignore if not a pinata
+            
             const maxLevel = difficulty === 1 ? 11 : difficulty === 2 ? 7 : difficulty === 3 ? 4 : 11;
+            
             if (award === awardTypeIcons[4]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
-            if (award === awardTypeIcons[5]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
-            if (award === awardTypeIcons[6]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
+            if (award === awardTypeIcons[5]) return pinataIcons.find(p => p.url === pinataURL).var2 > maxLevel;
+            if (award === awardTypeIcons[6]) return pinataIcons.find(p => p.url === pinataURL).var3 > maxLevel;
+
+            return false; // Ignore filter, not a variant award
         }
 
         // RNG Generator so things get random
