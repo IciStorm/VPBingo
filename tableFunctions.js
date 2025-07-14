@@ -15,7 +15,7 @@ function getBoardSettings() { // Checks user settings for the board
         seed = Math.floor(Math.random() * 100); // Needs to be fixed to handle bingo syncing during secretseed use
     }
 
-    return {
+    return { // Settings needed for bingo creation
         seed: parseInt(seed, 10),
         rawSeed,
         isSecret,
@@ -24,7 +24,7 @@ function getBoardSettings() { // Checks user settings for the board
         forceUnique: document.getElementById('forceUnique').checked,
         enablePlants: document.getElementById('enablePlantSet').checked,
         enableTinkerables: document.getElementById('enableTinkerables').checked
-        //enableTipSet eventually
+        //enableTipSet eventually maybe probably
     };
 }
 
@@ -37,7 +37,7 @@ function generateTasks(settings, enabledAwards, iconPool) {
     while (tasks.length < settings.size * settings.size) {
         let found = false;
 
-        if (settings.forceUnique) {
+        if (settings.forceUnique) { // Handles case where each icon can only appear once
             let attempts = 0;
             while (attempts < 1000 && !found && unusedPinatas.length > 0) {
                 const randomIndex = Math.floor(seededRandom(settings.seed + index + attempts) * unusedPinatas.length);
@@ -54,18 +54,18 @@ function generateTasks(settings, enabledAwards, iconPool) {
                     !checkAwardByDifficulty(pinataURL, award, settings.difficulty)
                 ) || [];
 
-                if (validAwards.length > 0) {
+                if (validAwards.length > 0) { // Icon has a valid award(s), pick one
                     const randomAwardIndex = Math.floor(seededRandom(settings.seed + index + attempts + 1) * validAwards.length);
                     const selectedAward = validAwards[randomAwardIndex];
                     tasks.push({ pinata: pinataURL, award: selectedAward });
                     unusedPinatas.splice(randomIndex, 1);
                     usedPinatas.add(pinataURL);
                     found = true;
-                } else {
+                } else { // Try again with another icon
                     attempts++;
                 }
             }
-        } else {
+        } else { // If no icons can be found with valid awards, display error icon (should not appear because table shrinks in size)
             const result = getValidCombo(iconPool, enabledAwards, settings.seed, index);
             if (!result.pinata.includes('ErrorFallback')) {
                 tasks.push(result);
@@ -80,7 +80,7 @@ function generateTasks(settings, enabledAwards, iconPool) {
     return tasks;
 }
 
-function renderBoard(tasks, size) {
+function renderBoard(tasks, size) { // Generates the table
     const tableContainer = document.getElementById('tableContainer');
     tableContainer.innerHTML = '';
     const table = document.createElement('table');
