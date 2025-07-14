@@ -402,6 +402,7 @@
             let filteredPinatas = pinataIcons;
             let filteredPlants = plantIcons;
             let filteredTinkerables = tinkerIcons;
+            let filteredTasks = awardTypes;
 
             if (!isSecret) { // If not using secretseed, filter tasks by difficulty setting
                 const difficulty = parseInt(document.getElementById('difficulty').value, 10);
@@ -445,9 +446,11 @@
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
+                                if (validAwards[randomAwardIndex] !== getTasksByDifficulty(awardTypes, difficulty) {
+                                    break;
+                                }
                                 award = validAwards[randomAwardIndex];
                                 unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
-                                break;
                             }
                             else attempts++;
                         }
