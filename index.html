@@ -310,6 +310,13 @@
             }
         }
 
+        function checkAwardByDifficulty(pinataURL, award, difficulty) { // Should make this more readable in the future by giving names to awardTypeIcons
+            const maxLevel = difficulty === 1 ? 11 : difficulty === 2 ? 7 : difficulty === 3 ? 4 : 11;
+            if (award === awardTypeIcons[4]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
+            if (award === awardTypeIcons[5]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
+            if (award === awardTypeIcons[6]) return pinataIcons.find(p => p.url === pinataURL).var1 > maxLevel;
+        }
+
         // RNG Generator so things get random
         function seededRandom(seed) {
             var x = Math.sin(seed) * 1049;
@@ -402,7 +409,6 @@
             let filteredPinatas = pinataIcons;
             let filteredPlants = plantIcons;
             let filteredTinkerables = tinkerIcons;
-            let filteredTasks = awardTypes;
 
             if (!isSecret) { // If not using secretseed, filter tasks by difficulty setting
                 const difficulty = parseInt(document.getElementById('difficulty').value, 10);
@@ -446,7 +452,7 @@
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                if (validAwards[randomAwardIndex] !== getTasksByDifficulty(awardTypes, difficulty)) {
+                                if (!checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
                                     break;
                                 }
                                 award = validAwards[randomAwardIndex];
