@@ -439,7 +439,9 @@
         
             renderBoard(tasks.slice(0, finalSize * finalSize), finalSize);
 
-            document.getElementById('tableSize').value = finalSize; // Update dropdown element to show new size
+            if (tasks.length > 0) {
+                document.getElementById('tableSize').value = finalSize; // Update dropdown element to show new size
+            }
         }
                         
 
