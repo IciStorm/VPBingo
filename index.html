@@ -429,9 +429,7 @@
                 lastTaskCountWasZero = true;
             } else if (lastTaskCountWasZero) {
                 // If previously we had 0, let it snap back to largest size possible
-                finalSize = taskCount < settings.size * settings.size
-                    ? getMaxSquareSize(taskCount)
-                    : settings.size;
+                finalSize = getMaxSquareSize(taskCount);
                 lastTaskCountWasZero = false;
             } else {
                 finalSize = taskCount < settings.size * settings.size
