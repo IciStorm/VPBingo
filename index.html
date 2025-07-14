@@ -386,6 +386,8 @@
             }
         }
 
+        let lastTaskCountWasZero = false;
+
         // Builds the table
         function createTable() {
             usedCombinations.clear();
@@ -418,11 +420,22 @@
 
             // Generate tasks for the board
             const tasks = generateTasks(settings, enabledAwards, iconPool);
+            const taskCount = tasks.length;
             
             // Based on how many tasks were produced, get a new size for the board
-            const finalSize = tasks.length < settings.size * settings.size
-                ? getMaxSquareSize(tasks.length)
-                : settings.size;
+            let finalSize;
+            if (taskCount === 0) {
+                finalSize = 0; // Empty board
+                lastTaskCountWasZero = true;
+            } else if (lastTaskCountWasZero) {
+                // If previously we had 0, let it snap back to full size
+                finalSize = settings.size;
+                lastTaskCountWasZero = false;
+            } else {
+                finalSize = taskCount < settings.size * settings.size
+                    ? getMaxSquareSize(taskCount)
+                    : settings.size;
+            }
         
             renderBoard(tasks.slice(0, finalSize * finalSize), finalSize);
 
