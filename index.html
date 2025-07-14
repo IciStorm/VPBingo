@@ -428,8 +428,10 @@
                 finalSize = 0; // Empty board
                 lastTaskCountWasZero = true;
             } else if (lastTaskCountWasZero) {
-                // If previously we had 0, let it snap back to full size
-                finalSize = settings.size;
+                // If previously we had 0, let it snap back to largest size possible
+                finalSize = taskCount < settings.size * settings.size
+                    ? getMaxSquareSize(taskCount)
+                    : settings.size;
                 lastTaskCountWasZero = false;
             } else {
                 finalSize = taskCount < settings.size * settings.size
