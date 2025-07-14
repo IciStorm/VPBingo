@@ -46,6 +46,10 @@ const plantSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
 ];
 
+const weedSet = [
+    'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_PlantRibbon.PNG?raw=true'
+];
+
 const tinkerSet = [
     'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_Character_Bart.PNG?raw=true'
 ];
@@ -148,16 +152,16 @@ const validCombos = {
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Nightshade.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Oak.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Orchid.PNG?raw=true' : plantSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/PoisonIvy.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/PoisonIvy.PNG?raw=true' : weedSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Poppy.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Pumpkin.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Snapdragon.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Sunflower.PNG?raw=true' : plantSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Thistle.PNG?raw=true' : plantSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Toadstool.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Thistle.PNG?raw=true' : weedSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Toadstool.PNG?raw=true' : weedSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Tulip.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Turnip.PNG?raw=true' : plantSet,
-    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/VenusPinataTrap.PNG?raw=true' : plantSet,
+    'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/VenusPinataTrap.PNG?raw=true' : weedSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/WaterLily.PNG?raw=true' : plantSet,
     'https://github.com/IciStorm/VPBingo/blob/main/images/Plants/Watercress.PNG?raw=true' : plantSet,
 
