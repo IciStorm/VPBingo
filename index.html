@@ -269,6 +269,7 @@
         const crossmark = 'https://github.com/IciStorm/VPBingo/blob/main/images/status/UI_Icon_X.PNG?raw=true';
 
         let usedCombinations = new Set(); // Stores created tasks to prevent duplicates from showing up
+        let lastTaskCountWasZero = false;
 
         // Controls which awards appear based on checkbox settings
         function getEnabledAwards() {
@@ -385,8 +386,6 @@
                 cell.appendChild(overlayImg);
             }
         }
-
-        let lastTaskCountWasZero = false;
 
         // Builds the table
         function createTable() {
