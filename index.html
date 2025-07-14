@@ -437,8 +437,10 @@
             }
         
             renderBoard(tasks.slice(0, finalSize * finalSize), finalSize);
-
+            if (tasks.length > 0) {
+                settings.size = finalsize;
                 document.getElementById('tableSize').value = finalSize; // Update dropdown element to show new size
+            }
         }
                         
 
