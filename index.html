@@ -255,6 +255,7 @@
         </div>
     </div>
 
+    <script src="tableFunctions.js"></script>
     <script src="awardTypes.js"></script>
     <script src="validCombos.js"></script>
     <script src="secretSeeds.js"></script>
@@ -387,116 +388,39 @@
 
         // Builds the table
         function createTable() {
-            usedCombinations.clear(); // Clears the set to allow repeated use
-            let seed = document.getElementById('seedInput').value; // Gets seed, if entered
-            seed = checkSeed(seed); // Strips seed of non-numeric characters and checks if it is a secret seed
-            let isSecret = typeof seed === 'string' && secretSeeds.hasOwnProperty(seed); // If seed returns as a string, then it is a secret seed
-            let secret = seed;
-            
-            if (seed === '') {
-                seed = Math.floor(Math.random() * 1000000000); // Generate a random seed
-                document.getElementById('seedInput').value = seed; // Display the current seed
-            }
-            if (isSecret) {
-                seed = Math.floor(Math.random() * 100); // Reduced seed combinations to allow easier syncing between users. This should be changed in the future but I don't know how just yet
-            }
-            seed = parseInt(seed, 10);
-
-            const size = parseInt(document.getElementById('tableSize').value, 10); // Checks size of table
-            //const enableTipSet = document.getElementById('enableTipSet').checked; // Checks if TiP is enabled
-            const enablePlantSet = document.getElementById('enablePlantSet').checked; // Checks if plants are enabled
-            const enableTinkerables = document.getElementById('enableTinkerables').checked; // Checks if tinkerables are enabled
-            const forceUnique = document.getElementById('forceUnique').checked; // Checks if all pinatas need to be unique
-            const tableContainer = document.getElementById('tableContainer'); // Gets the table
-            tableContainer.innerHTML = ''; // Clear the previous table
-
-            const table = document.createElement('table');
+            usedCombinations.clear();
+        
+            const settings = getBoardSettings();
             const enabledAwards = getEnabledAwards();
+        
             let filteredPinatas = pinataIcons;
             let filteredPlants = plantIcons;
             let filteredTinkerables = tinkerIcons;
-
-            if (!isSecret) { // If not using secretseed, filter tasks by difficulty setting
-                const difficulty = parseInt(document.getElementById('difficulty').value, 10);
-                filteredPinatas = getTasksByDifficulty(pinataIcons, difficulty);
-                filteredPlants = getTasksByDifficulty(plantIcons, difficulty);
-                filteredTinkerables = getTasksByDifficulty(tinkerIcons, difficulty);
+        
+            if (!settings.isSecret) {
+                filteredPinatas = getTasksByDifficulty(pinataIcons, settings.difficulty);
+                filteredPlants = getTasksByDifficulty(plantIcons, settings.difficulty);
+                filteredTinkerables = getTasksByDifficulty(tinkerIcons, settings.difficulty);
             }
-            
-            let iconPool; // Gets the available icons with the given settings
-            if (isSecret) {
-                iconPool = secretSeeds[secret].iconSet;
-            } else {
-                iconPool =
-                    (enablePlantSet && enableTinkerables) ? [...filteredPinatas, ...filteredPlants, ...filteredTinkerables] :
-                    enablePlantSet ? [...filteredPinatas, ...filteredPlants] :  
-                    enableTinkerables ? [...filteredPinatas, ...filteredTinkerables] : 
-                    filteredPinatas;
-            }
-            
-            let unusedPinatas = [...iconPool]; // To handle cases where forceUnique is enabled
-            let index = 0; // To vary the seed for each cell
-            
-            for (let i = 0; i < size; i++) {
-                const row = document.createElement('tr');
-
-                for (let j = 0; j < size; j++) {
-                    const cell = document.createElement('td');
-                    const iconContainer = document.createElement('div');
-                    iconContainer.classList.add('icon-container');
-
-                    let {pinata, award} = getValidCombo(iconPool, enabledAwards, seed, index);
-                    
-                    if (forceUnique) {
-                        let attempts = 0;
-                        while (attempts < 10000) {
-                            const randomIndex = Math.floor(seededRandom(seed + index + attempts) * unusedPinatas.length);
-                            const pinataURL = unusedPinatas[randomIndex];
-                            pinata = pinataURL.url;
-
-                            // Get a random valid award for the selected piñata
-                            const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award) && 
-                                !checkAwardByDifficulty(pinataURL, award, parseInt(document.getElementById('difficulty').value, 10))) || [];
-                            if (validAwards.length > 0) {
-                                const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                award = validAwards[randomAwardIndex];
-                                unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
-                                break;
-                            }
-                            else attempts++;
-                        }
-
-                        if (attempts == 10000) {
-                            pinata = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorFallback.PNG?raw=true';
-                            award = 'https://github.com/IciStorm/VPBingo/blob/main/images/awards/UI_Icon_ErrorHandler.PNG?raw=true';
-                        }
-                    }
-                        
-                    const mainIcon = document.createElement('img');
-                    mainIcon.src = pinata;
-                    mainIcon.classList.add('pinata-icon');
-                    iconContainer.appendChild(mainIcon);
-
-                    const awardIcon = document.createElement('img');
-                    awardIcon.src = award;
-                    if (awardIcon.src.endsWith('UI_Icon_Attract.PNG?raw=true')) {
-                        awardIcon.classList.add('award-type2');
-                    } else awardIcon.classList.add('award-type');
-                    iconContainer.appendChild(awardIcon);
-
-                    cell.appendChild(iconContainer);
-                    row.appendChild(cell);
-
-                    cell.addEventListener('click', function () {
-                        toggleOverlayImage(cell);
-                    });
-
-                    index++;
-                }
-                table.appendChild(row);
-            }
-            tableContainer.appendChild(table);
+        
+            let iconPool = settings.isSecret
+                ? secretSeeds[settings.rawSeed].iconSet
+                : (settings.enablePlants && settings.enableTinkerables)
+                    ? [...filteredPinatas, ...filteredPlants, ...filteredTinkerables]
+                    : settings.enablePlants
+                        ? [...filteredPinatas, ...filteredPlants]
+                        : settings.enableTinkerables
+                            ? [...filteredPinatas, ...filteredTinkerables]
+                            : filteredPinatas;
+        
+            const tasks = generateTasks(settings, enabledAwards, iconPool);
+            const finalSize = tasks.length < settings.size * settings.size
+                ? getMaxSquareSize(tasks.length)
+                : settings.size;
+        
+            renderBoard(tasks.slice(0, finalSize * finalSize), finalSize);
         }
+                        
 
         // Create initial table with a random seed
         createTable();
