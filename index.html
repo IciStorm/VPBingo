@@ -455,8 +455,7 @@
                             pinata = pinataURL.url;
 
                             // Get a random valid award for the selected piñata
-                            const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award) && 
-                                !checkAwardByDifficulty(pinata, award, parseInt(document.getElementById('difficulty').value, 10))) || [];
+                            const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
                                 award = validAwards[randomAwardIndex];
