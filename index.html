@@ -458,11 +458,10 @@
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                if (checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
-                                    break;
+                                if (!checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
+                                    award = validAwards[randomAwardIndex];
+                                    unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
                                 }
-                                award = validAwards[randomAwardIndex];
-                                unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
                             }
                             else attempts++;
                         }
