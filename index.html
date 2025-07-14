@@ -458,7 +458,7 @@
                             const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                if (!checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
+                                if (checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
                                     break;
                                 }
                                 award = validAwards[randomAwardIndex];
