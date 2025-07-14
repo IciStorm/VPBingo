@@ -461,6 +461,7 @@
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
                                 award = validAwards[randomAwardIndex];
                                 unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
+                                break;
                             }
                             else attempts++;
                         }
