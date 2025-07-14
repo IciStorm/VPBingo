@@ -455,12 +455,12 @@
                             pinata = pinataURL.url;
 
                             // Get a random valid award for the selected piñata
-                            const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award)) || [];
+                            const validAwards = validCombos[pinata]?.filter(award => enabledAwards.includes(award) && 
+                                !checkAwardByDifficulty(pinata, award, difficulty)) || [];
                             if (validAwards.length > 0) {
                                 const randomAwardIndex = Math.floor(seededRandom(seed + index + attempts) * validAwards.length);
-                                if (!checkAwardByDifficulty(pinata, validAwards[randomAwardIndex], difficulty)) {
-                                    award = validAwards[randomAwardIndex];
-                                    unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
+                                award = validAwards[randomAwardIndex];
+                                unusedPinatas.splice(randomIndex, 1); // Remove selected piñata from the pool
                                 }
                             }
                             else attempts++;
